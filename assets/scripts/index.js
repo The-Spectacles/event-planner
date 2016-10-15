@@ -1,7 +1,13 @@
 'use strict';
 
-// user require with a reference to bundle the file and use it in this file
-// var example = require('./example');
+const auth = require('./templates/auth/container.handlebars');
 
-// use require without a reference to ensure a file is bundled
-require('./example');
+const events = require('./templates/events/container.handlebars');
+
+const rsvps = require('./templates/rsvps/container.handlebars');
+
+$(() => {
+  $('.auth').html(auth);
+  $('.events').html(events);
+  $('.rsvps').html(rsvps);
+});
