@@ -40,10 +40,10 @@ const onChangePassword = (event) => {
 };
 
 const addHandlers = () => {
-  $(document).on('submit', '#sign-up', onSignUp);
-  $(document).on('submit', '#sign-in', onSignIn);
-  $(document).on('click', '#sign-out', onSignOut);
-  $(document).on('submit', '#change-password', onChangePassword);
+  $(document.body).on('submit', '#sign-up', onSignUp);
+  $(document.body).on('submit', '#sign-in', onSignIn);
+  $(document.body).on('click', '#sign-out', onSignOut);
+  $(document.body).on('submit', '#change-password', onChangePassword);
 };
 
 module.exports = {
