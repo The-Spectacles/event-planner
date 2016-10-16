@@ -1,27 +1,33 @@
 <h1>Events</h1>
 
-<div class="events-wrapper">
+<div class="wrapper">
 <h1>Create An Event</h1>
-<form id="create-event-form">
-  <div>
-  <ul class="event-form-body">
-  <li><label>Event Name</label></li>
-    <li><input name="event[title]" type="text"></li>
-    <li><label>Location</label></li>
-    <li><input name="event[location]" type="text"></li>
-    <li><label>Date</label></li>
-    <li><input name="event[date]" type="date"></li>
-    <li><label>Starts</label></li>
-    <li><input name="event[startTime]" type="time"></li>
-    <li><label>Ends</label></li>
-    <li><input name="event[endTime]" type="time"></li>
-    <li><label>Extras</label></li>
-    <li><input name="event[questions]" type="text"></li>
-    <li><button type="submit">Create Event</li>
-  </ul>
-  </div>
-
-</form>
-
+  <form id="create-event-form">
+    <div>
+      <label for="event[title]">Event Name</label>
+      <input name="event[title]" id="event[title]" type="text" required>
+    </div>
+    <div>
+      <label for="event[location]">Location</label>
+      <input name="event[location]" id="event[location]" type="text" required>
+    </div>
+    <div>
+      <label for="event[date]">Date</label>
+      <input name="event[date]" id="event[date]" type="date" required>
+    </div>
+    <div>
+      <label for="event[startTime]">Starts</label>
+      <input name="event[startTime]" id="event[startTime]" type="time" required>
+    </div>
+    <div>
+      <label for="event[endTime]">Ends</label>
+      <input name="event[endTime]" id="event[endTime]" type="time" required>
+    </div>
+    <div>
+      <label for="event[questions]">RSVP Options</label>
+      <input name="event[questions]" id="event[questions]" type="text" required>
+    </div>
+    <p><button type="submit">Create Event</button></p>
+  </form>
 
 </div>
