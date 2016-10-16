@@ -10,7 +10,7 @@ const onSignUp = (event) => {
   api.signUp(signUpData)
     .done(function (data, textStatus, jqXHR) {
       api.signIn(data, textStatus, jqXHR, signUpData)
-        .done(ui.success)
+        .done(ui.signInSuccess)
         .fail(ui.failure);
     })
     .fail(ui.failure);
@@ -20,7 +20,7 @@ const onSignIn = (event) => {
   event.preventDefault();
   let data = getFormFields(event.target);
   api.signIn(data)
-    .done(ui.success)
+    .done(ui.signInSuccess)
     .fail(ui.failure);
 };
 
