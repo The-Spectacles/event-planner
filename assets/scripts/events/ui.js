@@ -4,6 +4,8 @@
 
 const showAllEventsTemplate = require ('../templates/events/all-events.handlebars');
 const showSingleEventTemplate = require('../templates/events/single-event.handlebars');
+const showEditFormTemplate = require('../templates/events/edit-event.handlebars');
+
 
 // for getting all events
 const allEventsSuccess = (data) => {
@@ -34,6 +36,15 @@ const createEventSuccess = () => {
 console.log('event created successfully!!');
 };
 
+// show edit form
+const editFormSuccess = (data) => {
+ console.log('single event success data is', data);
+   let event = data.event;
+//   console.log(lists);
+   $(".single-event").html(showEditFormTemplate(event));
+};
+
+
 // const failure = () => {
 //   $('.pw-error').removeClass('hide');
 //   setTimeout(function() {
@@ -54,6 +65,7 @@ module.exports = {
   myEventsSuccess,
   createEventSuccess,
   singleEventSuccess,
+  editFormSuccess,
   // failure,
   // proceedToUpdateList,
   // showUpdatedList,

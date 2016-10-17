@@ -44,6 +44,19 @@ const createEvent = function (event) {
 };
 
 
+// show the edit form
+const getEditForm = function (event) {
+  event.preventDefault();
+  let eventId = $(event.target).attr('data-id');
+    api.getOneEvent(eventId)
+      .done(ui.editFormSuccess)
+      .fail(ui.failure);
+};
+
+// editing an event
+
+
+
 // events
 
 const addHandlers = () => {
@@ -53,7 +66,7 @@ const addHandlers = () => {
  $('#get-my-events').on('click', getMyEvents);
  $('#create-event-form').on('submit', createEvent);
  $('.events').on('click','.show-event', showSingleEvent);
-
+ $('.events').on('click','.update-event', getEditForm);
 
  };
 
