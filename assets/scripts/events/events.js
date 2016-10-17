@@ -38,9 +38,15 @@ const createEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
   console.log(data);
-    api.createNewEvent(data)
-      .done(ui.createEventsSuccess)
-      .fail(ui.failure);
+  // this is string interpolation using "template literals"
+  // same as:
+  // data.event.data + 'T' + data.event.startTime + ':00'
+  data.event.startTime = `${data.event.date}T${data.event.startTime}:00`;
+  data.event.endTime = `${data.event.date}T${data.event.endTime}:00`;
+  console.log('improved', data);
+  api.createNewEvent(data)
+    .done(ui.createEventsSuccess)
+    .fail(ui.failure);
 };
 
 
@@ -57,6 +63,8 @@ const getEditForm = function (event) {
 const updateEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
+  data.event.startTime = `${data.event.date}T${data.event.startTime}:00`;
+  data.event.endTime = `${data.event.date}T${data.event.endTime}:00`;
     api.updateEvent(data)
       .done(ui.singleEventSuccess)
       .fail(ui.failure);
