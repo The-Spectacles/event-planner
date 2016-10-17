@@ -10,7 +10,7 @@ const app = require('../app');
 
 const getAllEvents = function () {
   event.preventDefault();
-    api.getAllLists()
+    api.getAllEvents()
       .done(ui.allEventsSuccess)
       .fail(ui.failure);
 };
@@ -19,7 +19,7 @@ const getAllEvents = function () {
 // getting all events (profile)
 const getMyEvents = function () {
   event.preventDefault();
-    api.getAllLists()
+    api.getMyEvents()
       .done(ui.myEventsSuccess)
       .fail(ui.failure);
 };
@@ -30,6 +30,12 @@ const getMyEvents = function () {
 const addHandlers = () => {
 
   // for getting all events
-//  $('#my-lists-button').on('click', getMyEvents);
+ $('#get-all-events').on('click', getAllEvents);
+ $('#get-my-events').on('click', getMyEvents);
+
 
  };
+
+module.exports = {
+  addHandlers,
+};
