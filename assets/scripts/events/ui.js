@@ -2,15 +2,15 @@
 
 // const app = require('../app');
 
-// const showAllEventsTemplate = require ('../templates/******');
+const showAllEventsTemplate = require ('../templates/events/all-events.handlebars');
 // const showMyEventsTemplate = require('../templates/*******');
 
 // for getting all events
 const allEventsSuccess = (data) => {
  console.log('event success data is', data);
-  // let allEvents = data;
+   let allEvents = data;
 //   console.log(lists);
-  // $(".events").html(showAllEventsTemplate(allEvents));
+   $(".all-events").html(showAllEventsTemplate(allEvents));
 };
 
 // for getting my events
