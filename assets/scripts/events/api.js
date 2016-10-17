@@ -3,11 +3,22 @@
 const app = require('../app');
 
 
-// get all events
+// get all events (indexing)
 
 const getAllEvents = () => {
   return $.ajax({
     url: app.host + '/events',
+    method: "GET",
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+  }});
+};
+
+// get all of my events (profile)
+
+const getMyEvents = () => {
+  return $.ajax({
+    url: app.host + '/my-events',
     method: "GET",
     headers: {
       Authorization: 'Token token=' + app.user.token,
@@ -67,6 +78,7 @@ return $.ajax ({
 
 module.exports = {
   getAllEvents,
+  getMyEvents,
   getOneEvent,
   createNewEvent,
   updateEvent,

@@ -6,24 +6,23 @@ const api = require('./api');
 const ui = require('./ui');
 const app = require('../app');
 
-// for getting all events
+// for getting all events (button)
 
-const getMyEvents = function () {
+const getAllEvents = function () {
   event.preventDefault();
     api.getAllLists()
-      .done(ui.myListsSuccess)
+      .done(ui.allEventsSuccess)
       .fail(ui.failure);
 };
 
-//  for showing a event list
 
-//  for creating a new list
-
-//  for creating a new list (in my list view)
-
-// for updating a list title
-
-// for deleting an event
+// getting all events (profile)
+const getMyEvents = function () {
+  event.preventDefault();
+    api.getAllLists()
+      .done(ui.myEventsSuccess)
+      .fail(ui.failure);
+};
 
 
 // events
@@ -31,6 +30,6 @@ const getMyEvents = function () {
 const addHandlers = () => {
 
   // for getting all events
-  $('#my-lists-button').on('click', getMyEvents);
+//  $('#my-lists-button').on('click', getMyEvents);
 
  };
