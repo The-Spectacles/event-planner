@@ -10,7 +10,7 @@ const app = require('../app');
 
 const getAllEvents = function () {
   event.preventDefault();
-    api.getAllLists()
+    api.getAllEvents()
       .done(ui.allEventsSuccess)
       .fail(ui.failure);
 };
@@ -19,8 +19,17 @@ const getAllEvents = function () {
 // getting all events (profile)
 const getMyEvents = function () {
   event.preventDefault();
-    api.getAllLists()
+    api.getMyEvents()
       .done(ui.myEventsSuccess)
+      .fail(ui.failure);
+};
+
+const createEvent = function (event) {
+  event.preventDefault();
+  let data = getFormFields(event.target);
+  console.log(data);
+    api.createNewEvent(data)
+      .done(ui.createEventsSuccess)
       .fail(ui.failure);
 };
 
@@ -30,6 +39,14 @@ const getMyEvents = function () {
 const addHandlers = () => {
 
   // for getting all events
-//  $('#my-lists-button').on('click', getMyEvents);
+ $('#get-all-events').on('click', getAllEvents);
+ $('#get-my-events').on('click', getMyEvents);
+ $('#create-event-form').on('submit', createEvent);
+
+
 
  };
+
+module.exports = {
+  addHandlers,
+};
