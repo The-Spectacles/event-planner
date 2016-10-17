@@ -5,6 +5,7 @@
 const showAllEventsTemplate = require ('../templates/events/all-events.handlebars');
 const showSingleEventTemplate = require('../templates/events/single-event.handlebars');
 const showEditFormTemplate = require('../templates/events/edit-event.handlebars');
+const showMyEventsTemplate = require ('../templates/events/my-events.handlebars');
 
 
 // for getting all events
@@ -12,7 +13,7 @@ const allEventsSuccess = (data) => {
  console.log('event success data is', data);
    let allEvents = data;
 //   console.log(lists);
-   $(".all-events").html(showAllEventsTemplate(allEvents));
+   $(".events-list").html(showAllEventsTemplate(allEvents));
 };
 
 // convert from 24 hour clock to 12 hour clock
@@ -31,7 +32,7 @@ const formatTime = (time) => {
     console.log(newHour);
 
     // replace the 24-hour version of the hour with the 12-hour version
-    time = time.replace(oldHour, newHour); 
+    time = time.replace(oldHour, newHour);
 
     // add a 0 to the beginning so '5' becomes '05'
     if (newHour < 10) {
@@ -69,10 +70,9 @@ const singleEventSuccess = (data) => {
 // for getting my events
 
 const myEventsSuccess = (data) => {
- console.log('event success data is', data);
-  // let myEvents = data;
+  let myEvents = data;
 //   console.log(lists);
-  // $(".events").html(showMyEventsTemplate(myEvents));
+  $(".events-list").html(showMyEventsTemplate(myEvents));
 };
 
 const createEventSuccess = () => {
