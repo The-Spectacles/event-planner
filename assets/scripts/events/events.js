@@ -4,7 +4,7 @@ const getFormFields = require('../../../lib/get-form-fields');
 
 const api = require('./api');
 const ui = require('./ui');
-const app = require('../app');
+//const app = require('../app');
 
 // for getting all events (button)
 
@@ -24,6 +24,16 @@ const getMyEvents = function () {
       .fail(ui.failure);
 };
 
+// show one event
+const showSingleEvent = function (event) {
+  event.preventDefault();
+  let eventId = $(event.target).attr('data-id');
+    api.getOneEvent(eventId)
+      .done(ui.singleEventSuccess)
+      .fail(ui.failure);
+};
+
+// create an event
 const createEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
@@ -42,7 +52,7 @@ const addHandlers = () => {
  $('#get-all-events').on('click', getAllEvents);
  $('#get-my-events').on('click', getMyEvents);
  $('#create-event-form').on('submit', createEvent);
-
+ $('.events').on('click','.show-event', showSingleEvent);
 
 
  };

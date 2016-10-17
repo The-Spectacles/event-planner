@@ -3,7 +3,7 @@
 // const app = require('../app');
 
 const showAllEventsTemplate = require ('../templates/events/all-events.handlebars');
-// const showMyEventsTemplate = require('../templates/*******');
+const showSingleEventTemplate = require('../templates/events/single-event.handlebars');
 
 // for getting all events
 const allEventsSuccess = (data) => {
@@ -11,6 +11,14 @@ const allEventsSuccess = (data) => {
    let allEvents = data;
 //   console.log(lists);
    $(".all-events").html(showAllEventsTemplate(allEvents));
+};
+
+// for showing a single event
+const singleEventSuccess = (data) => {
+ console.log('single event success data is', data);
+   let event = data.event;
+//   console.log(lists);
+   $(".single-event").html(showSingleEventTemplate(event));
 };
 
 // for getting my events
@@ -45,6 +53,7 @@ module.exports = {
   allEventsSuccess,
   myEventsSuccess,
   createEventSuccess,
+  singleEventSuccess,
   // failure,
   // proceedToUpdateList,
   // showUpdatedList,

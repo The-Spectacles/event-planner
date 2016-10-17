@@ -27,9 +27,9 @@ const getMyEvents = () => {
 
 // show an event
 
-const getOneEvent = () => {
+const getOneEvent = (eventId) => {
 return $.ajax ({
-    url: app.host + '/events/' + app.event.id,
+    url: app.host + '/events/' + eventId,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + app.user.token,
