@@ -22,7 +22,9 @@ const myEventsSuccess = (data) => {
   // $(".events").html(showMyEventsTemplate(myEvents));
 };
 
-
+const createEventSuccess = () => {
+console.log('event created successfully!!');
+};
 
 // const failure = () => {
 //   $('.pw-error').removeClass('hide');
@@ -42,6 +44,7 @@ module.exports = {
 //  proceedToCreateList,
   allEventsSuccess,
   myEventsSuccess,
+  createEventSuccess,
   // failure,
   // proceedToUpdateList,
   // showUpdatedList,

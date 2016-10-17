@@ -40,6 +40,7 @@ return $.ajax ({
 // create new event
 
 const createNewEvent = (data) => {
+  console.log("DATA inside of API", data);
   return $.ajax({
     url: app.host + '/events',
     method: 'POST',

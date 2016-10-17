@@ -24,6 +24,15 @@ const getMyEvents = function () {
       .fail(ui.failure);
 };
 
+const createEvent = function (event) {
+  event.preventDefault();
+  let data = getFormFields(event.target);
+  console.log(data);
+    api.createNewEvent(data)
+      .done(ui.createEventsSuccess)
+      .fail(ui.failure);
+};
+
 
 // events
 
@@ -32,6 +41,8 @@ const addHandlers = () => {
   // for getting all events
  $('#get-all-events').on('click', getAllEvents);
  $('#get-my-events').on('click', getMyEvents);
+ $('#create-event-form').on('submit', createEvent);
+
 
 
  };
