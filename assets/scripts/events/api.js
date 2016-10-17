@@ -27,9 +27,9 @@ const getMyEvents = () => {
 
 // show an event
 
-const getOneEvent = () => {
+const getOneEvent = (eventId) => {
 return $.ajax ({
-    url: app.host + '/events/' + app.event.id,
+    url: app.host + '/events/' + eventId,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + app.user.token,
@@ -54,8 +54,9 @@ const createNewEvent = (data) => {
 // edit an event
 
 const updateEvent = (data) => {
+  console.log('patch api data is', data);
   return $.ajax({
-    url: app.host + '/events/' + app.data.id,
+    url: app.host + '/events/' + data.event._id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + app.user.token,
