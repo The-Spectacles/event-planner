@@ -1,4 +1,4 @@
-<form id="create-event-form">
+<form id="update-event-form">
   <div>
     <label for="event[title]">Event Name</label>
     <input name="event[title]" id="event[title]" type="text" value="{{title}}" required>
@@ -22,6 +22,7 @@
   <div>
     <label for="event[description]">Description</label>
     <input name="event[description]" id="event[description]" type="text" value="{{description}}">
+    <input type="hidden" id="event[_id]" name="event[_id]" value={{_id}}>
   </div>
   <p><button type="submit">Update Event</button></p>
 </form>
