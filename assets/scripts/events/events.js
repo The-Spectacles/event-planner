@@ -62,7 +62,13 @@ const updateEvent = function (event) {
       .fail(ui.failure);
 };
 
-
+const deleteEvent = (event) => {
+  event.preventDefault();
+  let eventId = $(event.target).attr('data-id');
+    api.deleteEvent(eventId)
+      .done(ui.deleteEventSuccess)
+      .fail(ui.failure);
+};
 
 // events
 
@@ -75,7 +81,7 @@ const addHandlers = () => {
  $('.events').on('click','.show-event', showSingleEvent);
  $('.events').on('click','.update-event', getEditForm);
  $('.events').on('submit','#update-event-form', updateEvent);
-
+ $('.events').on('click','.delete-event', deleteEvent);
 
  };
 

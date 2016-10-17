@@ -68,9 +68,9 @@ const updateEvent = (data) => {
 
 // delete an event
 
-const destroyEvent = (data) => {
+const deleteEvent = (eventId) => {
 return $.ajax ({
-    url: app.host + '/events/' + app.data.id,
+    url: app.host + '/events/' + eventId,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + app.user.token,
@@ -84,5 +84,5 @@ module.exports = {
   getOneEvent,
   createNewEvent,
   updateEvent,
-  destroyEvent
+  deleteEvent
 };

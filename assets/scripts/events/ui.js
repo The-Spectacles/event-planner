@@ -44,21 +44,11 @@ const editFormSuccess = (data) => {
    $(".single-event").html(showEditFormTemplate(event));
 };
 
+const deleteEventSuccess = () => {
 
-
-// const failure = () => {
-//   $('.pw-error').removeClass('hide');
-//   setTimeout(function() {
-//    $('.pw-error').fadeOut();
-//  }, 800);
-// };
-
-// const clearMyLists = () => {
-//   event.preventDefault();
-//   //console.log('clearMyLists is running');
-//   $(".content").html("");
-// //  $('#update-list-form').addClass('hide');
-// };
+  // show profile view
+console.log('event deleted successfully!!');
+};
 
 module.exports = {
 //  proceedToCreateList,
@@ -67,6 +57,7 @@ module.exports = {
   createEventSuccess,
   singleEventSuccess,
   editFormSuccess,
+  deleteEventSuccess,
   // failure,
   // proceedToUpdateList,
   // showUpdatedList,
