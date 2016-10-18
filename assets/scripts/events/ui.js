@@ -13,7 +13,7 @@ const showRsvpViewTemplate = require('../templates/rsvps/rsvp-view.handlebars');
 // for getting all events
 const allEventsSuccess = (data) => {
   console.log('event success data is', data);
-  data = formatDateTime.formatDatesForDisplay(data);
+  data.events = formatDateTime.formatDatesForDisplay(data.events);
   let allEvents = data;
   $(".events-list").html(showAllEventsTemplate(allEvents));
 };
@@ -22,7 +22,7 @@ const allEventsSuccess = (data) => {
 // for showing a single event
 const singleEventSuccess = (data) => {
   console.log('single event success data is', data);
-  data = formatDateTime.trimDateAndTime(data);
+  data.event = formatDateTime.trimDateAndTime(data.event);
   if (data.event.startTime) {
     data.event.startTime = formatDateTime.convertClock(data.event.startTime);
   }
@@ -68,7 +68,7 @@ const singleEventSuccess = (data) => {
 // for getting my events
 
 const myEventsSuccess = (data) => {
-  data = formatDateTime.formatDatesForDisplay(data);
+  data.events = formatDateTime.formatDatesForDisplay(data.events);
   let myEvents = data;
   $(".events-list").html(showMyEventsTemplate(myEvents));
 };
@@ -80,7 +80,7 @@ const createEventSuccess = () => {
 // show edit form
 const editFormSuccess = (data) => {
   console.log('single event success data is', data);
-  data = formatDateTime.trimDateAndTime(data);
+  data.event = formatDateTime.trimDateAndTime(data.event);
   console.log(data);
   let event = data.event;
   $(".single-event").html(showEditFormTemplate(event));

@@ -38,7 +38,7 @@ const createEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
   console.log(data);
-  data = formatDateTime.formatTimeForMongo(data);
+  data.event = formatDateTime.formatTimeForMongo(data.event);
   console.log('improved', data);
   api.createNewEvent(data)
     .done(ui.createEventsSuccess)
@@ -59,7 +59,7 @@ const getEditForm = function (event) {
 const updateEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
-  data = formatDateTime.formatTimeForMongo(data);
+  data.event = formatDateTime.formatTimeForMongo(data.event);
   api.updateEvent(data)
     .done(ui.singleEventSuccess)
     .fail(ui.failure);
