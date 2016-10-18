@@ -8,7 +8,13 @@ const createRsvpSuccess = (data) => {
   console.log("inside createRsvpSuccess", data);
 };
 
+const myRsvpsSuccess = (data) => {
+  console.log("inside createRsvpSuccess", data);
+};
+
+
 
 module.exports = {
   createRsvpSuccess,
+  myRsvpsSuccess,
 };
