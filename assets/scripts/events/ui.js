@@ -1,11 +1,12 @@
 'use strict';
 
-// const app = require('../app');
+ const app = require('../app');
 
 const showAllEventsTemplate = require ('../templates/events/all-events.handlebars');
 const showSingleEventTemplate = require('../templates/events/single-event.handlebars');
 const showEditFormTemplate = require('../templates/events/edit-event.handlebars');
 const showMyEventsTemplate = require ('../templates/events/my-events.handlebars');
+const showRsvpViewTemplate = require('../templates/rsvps/rsvp-view.handlebars');
 
 
 // for getting all events
@@ -64,7 +65,14 @@ const singleEventSuccess = (data) => {
   data.event.endTime = formatTime(data.event.endTime);
   let event = data.event;
   console.log('formatted event data', event);
-  $(".single-event").html(showSingleEventTemplate(event));
+  // if the event owner id and the user id match show single event view otherwise
+  // show rsvp view
+    if (event._owner === app.user._id) {
+      $(".single-event").html(showSingleEventTemplate(event));
+    }
+    else {
+      $(".single-event").html(showRsvpViewTemplate(event));
+    }
 };
 
 // for getting my events

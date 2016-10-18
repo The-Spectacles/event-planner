@@ -10,6 +10,12 @@
 <li>Ends: {{endTime}}</li>
 </ul>
 
-{{each questions}}
-
-{{/each questions}}
+{{#each questions}}
+{{text}}
+{{#each options}}
+<label>
+<input type="radio" name="options" value="{{this}}">
+{{this}}
+</label>
+{{/each}}
+{{/each}}
