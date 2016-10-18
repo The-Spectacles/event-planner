@@ -78,6 +78,8 @@ const deleteEvent = (event) => {
       .fail(ui.failure);
 };
 
+// 
+
 // events
 
 const addHandlers = () => {
