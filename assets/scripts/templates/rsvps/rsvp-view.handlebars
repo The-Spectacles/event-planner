@@ -10,12 +10,17 @@
 <li>Ends: {{endTime}}</li>
 </ul>
 
+<form id="create-rsvp">
 {{#each questions}}
 {{text}}
 {{#each options}}
+<div>
 <label>
 <input type="radio" name="options" value="{{this}}">
 {{this}}
 </label>
+</div>
 {{/each}}
 {{/each}}
+<button type="submit">Rsvp!</button>
+</form>
