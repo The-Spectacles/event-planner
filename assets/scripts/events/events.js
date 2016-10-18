@@ -6,6 +6,19 @@ const api = require('./api');
 const ui = require('./ui');
 //const app = require('../app');
 
+const formatTime = (data) => {
+  // this is string interpolation using "template literals"
+  // same as:
+  // data.event.data + 'T' + data.event.startTime + ':00'
+  if (data.event.startTime) {
+    data.event.startTime = `${data.event.date}T${data.event.startTime}:00`;
+  }
+  if (data.event.endTime) {
+    data.event.endTime = `${data.event.date}T${data.event.endTime}:00`;
+  }
+  return data;
+};
+
 // for getting all events (button)
 
 const getAllEvents = function () {
@@ -38,11 +51,7 @@ const createEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
   console.log(data);
-  // this is string interpolation using "template literals"
-  // same as:
-  // data.event.data + 'T' + data.event.startTime + ':00'
-  data.event.startTime = `${data.event.date}T${data.event.startTime}:00`;
-  data.event.endTime = `${data.event.date}T${data.event.endTime}:00`;
+  data = formatTime(data);
   console.log('improved', data);
   api.createNewEvent(data)
     .done(ui.createEventsSuccess)
@@ -63,11 +72,10 @@ const getEditForm = function (event) {
 const updateEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
-  data.event.startTime = `${data.event.date}T${data.event.startTime}:00`;
-  data.event.endTime = `${data.event.date}T${data.event.endTime}:00`;
-    api.updateEvent(data)
-      .done(ui.singleEventSuccess)
-      .fail(ui.failure);
+  data = formatTime(data);
+  api.updateEvent(data)
+    .done(ui.singleEventSuccess)
+    .fail(ui.failure);
 };
 
 const deleteEvent = (event) => {
