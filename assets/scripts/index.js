@@ -8,14 +8,18 @@ const authEvents = require('./auth/events.js');
 
 const eventEvents = require('./events/events.js');
 
+const rsvpEvents = require('./rsvps/events.js');
+
 // On document ready(when the page loads)
 $(() => {
   $('.auth').html(auth);
   $('.events').html(events);
   $('.rsvps').html(rsvps);
 
+
   // Here, we're running the add handlers from the appropriate files
   // so that they have access to them.
   authEvents.addHandlers();
   eventEvents.addHandlers();
+  rsvpEvents.addHandlers();
 });

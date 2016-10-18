@@ -11,12 +11,14 @@
 </ul>
 
 <form id="create-rsvp">
+<input type="hidden" id="rsvp[_event]" name="rsvp[_event]" value="{{id}}">
 {{#each questions}}
 {{text}}
+<input type="hidden" id="rsvp[questions][text]" name="rsvp[questions][text]" value="{{text}}">
 {{#each options}}
 <div>
 <label>
-<input type="radio" name="options" value="{{this}}">
+<input type="radio" name="rsvp[questions][options]" value="{{this}}">
 {{this}}
 </label>
 </div>
