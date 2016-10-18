@@ -27,10 +27,18 @@ const getMyRsvps = () => {
       .fail(ui.failure);
 };
 
+const onShowRsvp = (event) => {
+  event.preventDefault();
+  let rsvpId = $(event.target).attr('data-id');
+  api.getOneRsvp(rsvpId)
+    .done(ui.singleRsvpSuccess)
+    .fail(ui.failure);
+};
+
 const addHandlers = () => {
   $('.events').on('submit','#create-rsvp', onCreateRsvp);
   $('.rsvps').on('click', '#get-my-rsvps', getMyRsvps);
-
+  $('.rsvps').on('click', '.show-rsvp', onShowRsvp);
 };
 
 module.exports = {
