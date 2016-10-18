@@ -14,9 +14,18 @@ const getMyRsvps = () => {
   }});
 };
 
+// show an rsvp
+const getOneRsvp = (rsvpId) => {
+return $.ajax ({
+    url: app.host + '/events/' + rsvpId,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+  });
+};
 
 // create an rsvp
-
 const createRsvp = (data) => {
   console.log("create rsvp ajax data is", data);
   return $.ajax({
@@ -44,10 +53,9 @@ const updateRsvp = (data) => {
 
 
 
-
-
 module.exports = {
   getMyRsvps,
+  getOneRsvp,
   createRsvp,
   updateRsvp
 };
