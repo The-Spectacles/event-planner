@@ -17,7 +17,7 @@ const getMyRsvps = () => {
 // show an rsvp
 const getOneRsvp = (rsvpId) => {
 return $.ajax ({
-    url: app.host + '/events/' + rsvpId,
+    url: app.host + '/rsvps/' + rsvpId,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + app.user.token,
