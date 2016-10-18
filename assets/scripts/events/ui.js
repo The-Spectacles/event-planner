@@ -9,16 +9,8 @@ const showMyEventsTemplate = require ('../templates/events/my-events.handlebars'
 const showRsvpViewTemplate = require('../templates/rsvps/rsvp-view.handlebars');
 
 
-// for getting all events
-const allEventsSuccess = (data) => {
- console.log('event success data is', data);
-   let allEvents = data;
-//   console.log(lists);
-   $(".events-list").html(showAllEventsTemplate(allEvents));
-};
-
 // convert from 24 hour clock to 12 hour clock
-const formatTime = (time) => {
+const formatAmAndPm = (time) => {
   // time comes in as '17:30'
   // using .substring to get the first two digits (the hour)
   // if it's less than 12, add " AM" to make the time "08:30 AM"
@@ -45,10 +37,7 @@ const formatTime = (time) => {
   }
 };
 
-// for showing a single event
-const singleEventSuccess = (data) => {
-  console.log('single event success data is', data);
-
+const formatTimeAndDate = (data) => {
   // date and time both come in from API as '2016-10-20T12:30:00'
   // .split('T') turns it into ['2016-10-20', '12:30:00']
   // taking the first element of that array gets us a nicely formatted data
@@ -57,12 +46,40 @@ const singleEventSuccess = (data) => {
   // taking the second element gets us the time as '12:30:00'
   // .substring(0, 5) will start at the first character of that string
   // and return 5 total characters: '12:30' (four digits plus the colon)
-  data.event.startTime = data.event.startTime.split('T')[1].substring(0, 5);
-  data.event.endTime = data.event.endTime.split('T')[1].substring(0, 5);
-
   // using the formatTime function above to make the time pretty
-  data.event.startTime = formatTime(data.event.startTime);
-  data.event.endTime = formatTime(data.event.endTime);
+  if(data.event.startTime) {
+    data.event.startTime = data.event.startTime.split('T')[1].substring(0, 5);
+  }
+  if (data.event.endTime) {
+    data.event.endTime = data.event.endTime.split('T')[1].substring(0, 5);
+  }
+
+  return data;
+};
+
+
+// for getting all events
+const allEventsSuccess = (data) => {
+  console.log('event success data is', data);
+  data.events.forEach((event) => {
+    event.date = event.date.split('T')[0];
+  });
+  let allEvents = data;
+  
+  $(".events-list").html(showAllEventsTemplate(allEvents));
+};
+
+
+// for showing a single event
+const singleEventSuccess = (data) => {
+  console.log('single event success data is', data);
+  data = formatTimeAndDate(data);
+  if (data.event.startTime) {
+    data.event.startTime = formatAmAndPm(data.event.startTime);
+  }
+  if (data.event.endTime) {
+    data.event.endTime = formatAmAndPm(data.event.endTime);
+  }
   let event = data.event;
   console.log('formatted event data', event);
   // if the event owner id and the user id match show single event view otherwise
@@ -78,8 +95,10 @@ const singleEventSuccess = (data) => {
 // for getting my events
 
 const myEventsSuccess = (data) => {
+  data.events.forEach((event) => {
+    event.date = event.date.split('T')[0];
+  });
   let myEvents = data;
-//   console.log(lists);
   $(".events-list").html(showMyEventsTemplate(myEvents));
 };
 
@@ -90,9 +109,7 @@ const createEventSuccess = () => {
 // show edit form
 const editFormSuccess = (data) => {
   console.log('single event success data is', data);
-  data.event.date = data.event.date.split('T')[0];
-  data.event.startTime = data.event.startTime.split('T')[1].substring(0, 5);
-  data.event.endTime = data.event.endTime.split('T')[1].substring(0, 5);
+  data = formatTimeAndDate(data);
   console.log(data);
   let event = data.event;
   $(".single-event").html(showEditFormTemplate(event));
