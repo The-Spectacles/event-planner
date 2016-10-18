@@ -20,8 +20,17 @@ const onCreateRsvp = (event) => {
     .fail(ui.failure);
 };
 
+const getMyRsvps = () => {
+  event.preventDefault();
+    api.getMyRsvps()
+      .done(ui.myRsvpsSuccess)
+      .fail(ui.failure);
+};
+
 const addHandlers = () => {
   $('.events').on('submit','#create-rsvp', onCreateRsvp);
+  $('.rsvps').on('click', '#get-my-rsvps', getMyRsvps);
+
 };
 
 module.exports = {
