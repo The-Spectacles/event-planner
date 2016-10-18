@@ -88,6 +88,7 @@ const singleEventSuccess = (data) => {
       $(".single-event").html(showSingleEventTemplate(event));
     }
     else {
+    // we should think about what the main div is that we're filling up with content
       $(".single-event").html(showRsvpViewTemplate(event));
     }
 };

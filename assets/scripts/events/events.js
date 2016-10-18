@@ -98,7 +98,7 @@ const addHandlers = () => {
  $('.events').on('click','.update-event', getEditForm);
  $('.events').on('submit','#update-event-form', updateEvent);
  $('.events').on('click','.delete-event', deleteEvent);
-
+ $('.rsvps').on('click','.update-rsvp', showSingleEvent);
  };
 
 module.exports = {
