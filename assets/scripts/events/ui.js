@@ -65,7 +65,7 @@ const allEventsSuccess = (data) => {
     event.date = event.date.split('T')[0];
   });
   let allEvents = data;
-  
+
   $(".events-list").html(showAllEventsTemplate(allEvents));
 };
 
@@ -80,7 +80,30 @@ const singleEventSuccess = (data) => {
   if (data.event.endTime) {
     data.event.endTime = formatAmAndPm(data.event.endTime);
   }
+  // we need to get the counts of rsvps. loop through each rsvp to see if yes, no, or maybe
+  let yes = 0;
+  let no = 0;
+  let maybe = 0;
+
+  data.event.rsvps.forEach((rsvp) => {
+    if(rsvp.questions[0].options === 'Yes') {
+      yes++;
+    }
+    else if(rsvp.questions[0].options === 'No') {
+      no++;
+    }
+    else if(rsvp.questions[0].options === 'Maybe') {
+      maybe++;
+    }
+  //  console.log('rsvp is', rsvp.questions[0].options);
+  });
+    console.log("yes is", yes, "no is", no, "maybe is", maybe);
+
   let event = data.event;
+  event.yes = yes;
+  event.no = no;
+  event.maybe = maybe;
+
   console.log('formatted event data', event);
   // if the event owner id and the user id match show single event view otherwise
   // show rsvp view
