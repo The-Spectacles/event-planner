@@ -10,11 +10,15 @@
 <li>Ends: {{endTime}}</li>
 </ul>
 
-<h2> Attendees </h2>
-
-<p>People attending: {{yes}}</p>
-<p>People declined: {{no}}</p>
-<p>People undecided: {{maybe}}</p>
+<h2>Response keys</h2>
+{{#each responses}}
+<p>{{@key}}</p>
+  {{#each this}}
+    {{#each this}}
+      <p>{{@key}}: {{this}}</p>
+    {{/each}}
+  {{/each}}
+{{/each}}
 
 <form id="create-rsvp">
 <input type="hidden" id="rsvp[_event]" name="rsvp[_event]" value="{{id}}">
