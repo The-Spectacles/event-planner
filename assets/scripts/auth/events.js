@@ -39,11 +39,25 @@ const onChangePassword = (event) => {
     .fail(ui.failure);
 };
 
+const onShowAuth = () => {
+  event.preventDefault();
+  let authForm = '';
+  if ($(event.target).hasClass('sign-up')) {
+    authForm = 'sign-up';
+  } else if ($(event.target).hasClass('sign-in')) {
+    console.log('clicked on sign in link');
+    authForm = 'sign-in';
+  }
+  ui.showAuthForms(authForm);
+};
+
 const addHandlers = () => {
-  $('.auth').on('submit', '#sign-up', onSignUp);
-  $('.auth').on('submit', '#sign-in', onSignIn);
-  $('.auth').on('click', '#sign-out', onSignOut);
-  $('.auth').on('submit', '#change-password', onChangePassword);
+  $('.interface').on('submit', '#sign-up', onSignUp);
+  $('.interface').on('submit', '#sign-in', onSignIn);
+  $('.nav').on('click', '#sign-out', onSignOut);
+  $('.interface').on('submit', '#change-password', onChangePassword);
+  $('.interface').on('click', '.sign-in', onShowAuth);
+  $('.interface').on('click', '.sign-up', onShowAuth);
 };
 
 module.exports = {

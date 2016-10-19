@@ -16,8 +16,19 @@ const signInSuccess = (data) => {
   success(data);
 };
 
+const showAuthForms = (authForm) => {
+  if (authForm === 'sign-up') {
+    const signUpForm = require('../templates/auth/sign-up.handlebars');
+    $('.interface').html(signUpForm);
+  } else if (authForm === 'sign-in') {
+    const signInForm = require('../templates/auth/sign-in.handlebars');
+    $('.interface').html(signInForm);
+  }
+};
+
 module.exports = {
   success,
   failure,
   signInSuccess,
+  showAuthForms,
 };
