@@ -85,9 +85,9 @@ const deleteEvent = (event) => {
 // events
 
 const addHandlers = () => {
-  $('#get-all-events').on('click', getAllEvents);
+  $('.container-fluid').on('click', '.get-all-events', getAllEvents);
   $('#get-my-events').on('click', getMyEvents);
-  $('#show-event-form').on('click', showEventForm);
+  $('.container-fluid').on('click', '.show-event-form', showEventForm);
   $('.interface').on('submit', '#create-event-form', createEvent);
   $('.interface').on('click','.show-event', showSingleEvent);
   $('.interface').on('click','.update-event', getEditForm);
