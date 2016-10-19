@@ -2,18 +2,16 @@
 
 const app = require('../app');
 
-const success = (data) => {
-  console.log(data);
-};
-
-const failure = (error) => {
-  console.error(error);
+const failure = () => {
+  $('.message').html('<p>Oops! Try again.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
 };
 
 const signInSuccess = (data) => {
   console.log('signed in!');
   app.user = data.user;
-  success(data);
+  console.log(data);
+  $('.interface').html("Show profile view here");
 };
 
 const showAuthForms = (authForm) => {
@@ -26,9 +24,33 @@ const showAuthForms = (authForm) => {
   }
 };
 
+const passwordChangeSuccess = () => {
+  $('.interface').html("Show profile view here");
+  $('.message').html('<p>Password changed successfully.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
+};
+
+const signOutSuccess = () => {
+  console.log('signed out!');
+  app.user = null;
+  $('.interface').html("Show home page view here");
+};
+
+const togglePasswordForm = () => {
+  let passwordVisible = $('.interface').children('.pwd-form').length;
+  if(passwordVisible) {
+    $('.interface').html("Show profile view here");
+  } else {
+    const passwordForm = require('../templates/auth/change-password.handlebars');
+    $('.interface').html(passwordForm);
+  }
+};
+
 module.exports = {
-  success,
   failure,
   signInSuccess,
   showAuthForms,
+  signOutSuccess,
+  passwordChangeSuccess,
+  togglePasswordForm,
 };

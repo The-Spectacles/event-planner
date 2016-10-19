@@ -27,7 +27,7 @@ const onSignIn = (event) => {
 const onSignOut = (event) => {
   event.preventDefault();
   api.signOut()
-    .done(ui.success)
+    .done(ui.signOutsuccess)
     .fail(ui.failure);
 };
 
@@ -35,7 +35,7 @@ const onChangePassword = (event) => {
   event.preventDefault();
   let data = getFormFields(event.target);
   api.changePassword(data)
-    .done(ui.success)
+    .done(ui.passwordChangeSuccess)
     .fail(ui.failure);
 };
 
@@ -55,6 +55,7 @@ const addHandlers = () => {
   $('.interface').on('submit', '#sign-up', onSignUp);
   $('.interface').on('submit', '#sign-in', onSignIn);
   $('.nav').on('click', '#sign-out', onSignOut);
+  $('.nav').on('click', '#change-pwd', ui.togglePasswordForm);
   $('.interface').on('submit', '#change-password', onChangePassword);
   $('.interface').on('click', '.sign-in', onShowAuth);
   $('.interface').on('click', '.sign-up', onShowAuth);
