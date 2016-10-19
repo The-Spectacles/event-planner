@@ -28,9 +28,9 @@ const showAuthForms = (authForm) => {
 };
 
 const passwordChangeSuccess = () => {
-  $('.interface').html("Show profile view here");
   $('.message').html('<p>Password changed successfully.</p>');
   $('.message').children().delay(3000).fadeToggle('slow');
+  profileEvents.buildProfile();
 };
 
 const signOutSuccess = () => {
