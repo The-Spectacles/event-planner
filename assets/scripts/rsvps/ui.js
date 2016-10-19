@@ -7,13 +7,11 @@ const myRsvpsTemplate = require('../templates/rsvps/my-rsvps.handlebars');
 const singleRsvpTemplate = require('../templates/rsvps/single-rsvp.handlebars');
 
 const myRsvpsSuccess = (data) => {
-  console.log("inside createRsvpSuccess", data);
   data.rsvps = formatDateTime.formatDatesForDisplay(data.rsvps);
   $('.my-rsvps').html(myRsvpsTemplate(data));
 };
 
 const singleRsvpSuccess = (data) => {
-  console.log('the single RSVP data is', data);
   data.rsvp = formatDateTime.trimDateAndTime(data.rsvp);
   if (data.rsvp.startTime) {
     data.rsvp.startTime = formatDateTime.convertClock(data.rsvp.startTime);

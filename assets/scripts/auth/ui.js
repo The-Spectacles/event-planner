@@ -10,11 +10,13 @@ const failure = () => {
 };
 
 const signInSuccess = (data) => {
-  console.log('signed in!');
   app.user = data.user;
-  console.log(data);
   $('.nav').removeClass('hide');
+  $('.container-fluid').removeClass('image-background');
   profileEvents.buildProfile();
+  $('.main').removeClass('white-box');
+
+
 };
 
 const showAuthForms = (authForm) => {
@@ -34,11 +36,13 @@ const passwordChangeSuccess = () => {
 };
 
 const signOutSuccess = () => {
-  console.log('signed out!');
   app.user = null;
   $('.nav').addClass('hide');
   const homepage = require('../templates/homepage/container.handlebars');
   $('.interface').html(homepage);
+  $('.container-fluid').addClass('image-background');
+  $('.main').addClass('white-box');
+
 };
 
 const togglePasswordForm = () => {

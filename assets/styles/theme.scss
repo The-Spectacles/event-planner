@@ -38,14 +38,33 @@ form {
 
   &.create-rsvp {
     input {
-      width: 5%
+      width: 5%;
     }
-    label: {
+
+    label {
       width: 95%;
     }
   }
 }
 
+.auth-form {
+  color: $homepage-font;
+  font-family: 'Raleway', sans-serif;
+  font-size: $font-size;
+}
+
 .event-responses {
   text-align: left;
+}
+
+.image-background {
+  background: url('../images/happening.jpg') no-repeat;
+  background-size: cover;
+}
+
+.white-box {
+  background: $dark-purple;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding-bottom: 10px;
 }

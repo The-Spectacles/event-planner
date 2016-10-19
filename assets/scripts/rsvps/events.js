@@ -7,7 +7,6 @@ const ui = require('./ui');
 
 const getMyRsvps = () => {
   event.preventDefault();
-  console.log("INSIDE getMyRsvps ********");
     api.getMyRsvps()
       .done(ui.myRsvpsSuccess)
       .fail(ui.failure);
