@@ -40,7 +40,6 @@ return $.ajax ({
 // create new event
 
 const createNewEvent = (data) => {
-  console.log("DATA inside of API", data);
   return $.ajax({
     url: app.host + '/events',
     method: 'POST',
@@ -54,7 +53,6 @@ const createNewEvent = (data) => {
 // edit an event
 
 const updateEvent = (data) => {
-  console.log('patch api data is', data);
   return $.ajax({
     url: app.host + '/events/' + data.event._id,
     method: 'PATCH',
