@@ -33,29 +33,42 @@ const singleEventSuccess = (data) => {
   let responses = {};
   // loop through the event questions to find each question
   data.event.questions.forEach((question) => {
-    //set up an empty "answers" object
+    // for each question, add the question text as a property key on responses
+    // the value of that property is an empty array, which will hold the answer objects
     responses[question.text] = [];
-    // let response = {
-    //   questionText: question.text,
-    //   questionOptions: [],
-    // };
 
+    // for each option, set up an object that looks like: { "Yes": 0 }
+    // push that option into the array we set up above
     question.options.forEach((option) => {
       let answer = {};
       answer[option] = 0;
       responses[question.text].push(answer);
     });
 
-    // responses.push(response);
+    // the end result looks like:
+
+    // responses = {
+    //   "Are you coming?": [
+    //     { "Yes": 0 },
+    //     { "No": 0 },
+    //     { "Maybe": 0 },
+    //   ],
+    // };
 
   });
 
   console.log('responses for this event', responses);
 
+  // loop through each of the rsvps
   data.event.rsvps.forEach((rsvp) => {
+    // loop through each question/answer in the rsvp
     rsvp.questions.forEach((question) => {
-      // responses[question.text][question.options] = responses[question.text][question.options] + 1;
+      // find the appropriate question in the responses object and go through all of the possible answers
       responses[question.text].forEach((option) => {
+        // if there's a match between the response in the RSVP and the answer option, increment the count
+        // so if the rsvp is "Yes" for "Are you coming?"
+        // then change tha answer option inside of the responses object for that question
+        // to { "Yes": 1 }
         if (option.hasOwnProperty(question.options)) {
           option[question.options] = option[question.options] + 1;
         }
@@ -87,6 +100,7 @@ const singleEventSuccess = (data) => {
   // event.no = no;
   // event.maybe = maybe;
 
+  // add the responses object to the event data so we can use it in handlebars
   event.responses = responses;
 
   console.log('formatted event data', event);
