@@ -26,7 +26,7 @@ const singleRsvpSuccess = (data) => {
     data.rsvp.endTime = formatDateTime.convertClock(data.rsvp.endTime);
   }
   let rsvp = data.rsvp;
-  $('.single-rsvp').html(singleRsvpTemplate(rsvp));
+  $('.interface').html(singleRsvpTemplate(rsvp));
 };
 
 
