@@ -1,16 +1,20 @@
 <a href="" class="update-rsvp" data-id='{{_event}}'>Edit</a>
 
-<ul>
-<li>Event Title: {{title}}</li>
-<li>Event Date: {{date}}</li>
-<li>Location: {{location}}</li>
-<li>Description: {{description}}</li>
-<li>Starts: {{startTime}}</li>
-<li>Ends: {{endTime}}</li>
-</ul>
+
+<h3>{{title}}</h3>
+<p>Event Date: {{date}}</p>
+<p>Location: {{location}}</p>
+<p>Description: {{description}}</p>
+<p>Starts {{startTime}}</p>
+<p>Ends {{endTime}}</p>
 
 {{#each questions}}
 <p>{{text}}</p>
 <p>{{options}}</p>
 
 {{/each}}
+
+
+{{#if description}}
+
+{{/if}}
