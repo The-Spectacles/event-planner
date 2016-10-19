@@ -24,5 +24,22 @@
     <input name="event[description]" id="event[description]" type="text" value="{{description}}">
     <input type="hidden" id="event[_id]" name="event[_id]" value={{_id}}>
   </div>
+
+  {{#each questions}}
+    <div class="event-form-questions">
+      <div>
+        <label for="event[questions][{{@index}}]">Question:</label>
+        <input name="event[questions][{{@index}}][text]"type="text" value="Are you coming?">
+      </div>
+
+      {{#each options}}
+        <div>
+        <label for="event[questions][0][options][{{@index}}]">Answer option {{@index}}:</label>
+        <input name="event[questions][0][options][{{@index}}]" type="text" value="{{@this}}">
+      </div>
+      {{/each}}
+      
+    </div>
+  {{/each}}
   <p><button type="submit">Update Event</button></p>
 </form>
