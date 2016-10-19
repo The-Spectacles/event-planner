@@ -29,9 +29,15 @@ const singleRsvpSuccess = (data) => {
   $('.interface').html(singleRsvpTemplate(rsvp));
 };
 
+const failure = () => {
+  $('.message').html('<p>Oops! Try again.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
+};
+
 
 module.exports = {
   createRsvpSuccess,
   myRsvpsSuccess,
   singleRsvpSuccess,
+  failure
 };
