@@ -2,6 +2,8 @@
 
 const app = require('../app');
 
+const profileEvents = require('../profile/events');
+
 const failure = () => {
   $('.message').html('<p>Oops! Try again.</p>');
   $('.message').children().delay(3000).fadeToggle('slow');
@@ -12,7 +14,7 @@ const signInSuccess = (data) => {
   app.user = data.user;
   console.log(data);
   $('.nav').removeClass('hide');
-  $('.interface').html("Show profile view here");
+  profileEvents.buildProfile();
 };
 
 const showAuthForms = (authForm) => {
