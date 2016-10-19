@@ -9,13 +9,14 @@ const showSingleEventTemplate = require('../templates/events/single-event.handle
 const showEditFormTemplate = require('../templates/events/edit-event.handlebars');
 const showMyEventsTemplate = require ('../templates/events/my-events.handlebars');
 const showRsvpViewTemplate = require('../templates/rsvps/rsvp-view.handlebars');
+const showCreateEventTemplate = require('../templates/events/create-event.handlebars');
 
 // for getting all events
 const allEventsSuccess = (data) => {
   console.log('event success data is', data);
   data.events = formatDateTime.formatDatesForDisplay(data.events);
   let allEvents = data;
-  $(".events-list").html(showAllEventsTemplate(allEvents));
+  $(".interface").html(showAllEventsTemplate(allEvents));
 };
 
 
@@ -115,6 +116,11 @@ const singleEventSuccess = (data) => {
     }
 };
 
+//show event create form
+const showEventFormSuccess = () => {
+  $(".interface").html(showCreateEventTemplate());
+};
+
 // for getting my events
 
 const myEventsSuccess = (data) => {
@@ -148,4 +154,5 @@ module.exports = {
   singleEventSuccess,
   editFormSuccess,
   deleteEventSuccess,
+  showEventFormSuccess
 };

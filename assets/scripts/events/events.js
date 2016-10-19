@@ -33,6 +33,12 @@ const showSingleEvent = function (event) {
       .fail(ui.failure);
 };
 
+// show event create form
+const showEventForm = function (event) {
+  event.preventDefault();
+  ui.showEventFormSuccess();
+};
+
 // create an event
 const createEvent = function (event) {
   event.preventDefault();
@@ -80,6 +86,7 @@ const addHandlers = () => {
   // for getting all events
  $('#get-all-events').on('click', getAllEvents);
  $('#get-my-events').on('click', getMyEvents);
+ $('#show-event-form').on('click', showEventForm);
  $('#create-event-form').on('submit', createEvent);
  $('.events').on('click','.show-event', showSingleEvent);
  $('.events').on('click','.update-event', getEditForm);
