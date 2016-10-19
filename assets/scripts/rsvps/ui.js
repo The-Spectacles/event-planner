@@ -6,10 +6,6 @@ const formatDateTime = require('../../../lib/format-date-time');
 const myRsvpsTemplate = require('../templates/rsvps/my-rsvps.handlebars');
 const singleRsvpTemplate = require('../templates/rsvps/single-rsvp.handlebars');
 
-const createRsvpSuccess = (data) => {
-  console.log("inside createRsvpSuccess", data);
-};
-
 const myRsvpsSuccess = (data) => {
   console.log("inside createRsvpSuccess", data);
   data.rsvps = formatDateTime.formatDatesForDisplay(data.rsvps);
@@ -27,6 +23,12 @@ const singleRsvpSuccess = (data) => {
   }
   let rsvp = data.rsvp;
   $('.interface').html(singleRsvpTemplate(rsvp));
+};
+
+const createRsvpSuccess = () => {
+  $('.message').html('<p>Thanks for RSVPing!</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
+  $('.interface').html('<div class="my-rsvps"></div>');
 };
 
 const failure = () => {
