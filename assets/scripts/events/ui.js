@@ -144,12 +144,18 @@ const editFormSuccess = (data) => {
   data.event = formatDateTime.trimDateAndTime(data.event);
   console.log(data);
   let event = data.event;
-  $(".single-event").html(showEditFormTemplate(event));
+  $(".interface").html(showEditFormTemplate(event));
 };
 
 const deleteEventSuccess = () => {
-  // show profile view
-  console.log('event deleted successfully!!');
+  $('.message').html('<p>Event deleted successfully.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
+  $('.interface').html('<div class="events-list"></div>');
+};
+
+const failure = () => {
+  $('.message').html('<p>Oops! Try again.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
 };
 
 module.exports = {
@@ -159,5 +165,6 @@ module.exports = {
   singleEventSuccess,
   editFormSuccess,
   deleteEventSuccess,
-  showEventFormSuccess
+  showEventFormSuccess,
+  failure,
 };

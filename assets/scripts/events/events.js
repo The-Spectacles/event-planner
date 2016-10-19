@@ -75,25 +75,26 @@ const deleteEvent = (event) => {
   event.preventDefault();
   let eventId = $(event.target).attr('data-id');
     api.deleteEvent(eventId)
-      .done(ui.deleteEventSuccess)
+      .done(() => {
+        ui.deleteEventSuccess();
+        getMyEvents();
+      })
       .fail(ui.failure);
 };
 
 // events
 
 const addHandlers = () => {
-
-  // for getting all events
- $('#get-all-events').on('click', getAllEvents);
- $('#get-my-events').on('click', getMyEvents);
- $('#show-event-form').on('click', showEventForm);
- $('.interface').on('submit', '#create-event-form', createEvent);
- $('.events').on('click','.show-event', showSingleEvent);
- $('.events').on('click','.update-event', getEditForm);
- $('.events').on('submit','#update-event-form', updateEvent);
- $('.events').on('click','.delete-event', deleteEvent);
- $('.rsvps').on('click','.update-rsvp', showSingleEvent);
- };
+  $('#get-all-events').on('click', getAllEvents);
+  $('#get-my-events').on('click', getMyEvents);
+  $('#show-event-form').on('click', showEventForm);
+  $('.interface').on('submit', '#create-event-form', createEvent);
+  $('.interface').on('click','.show-event', showSingleEvent);
+  $('.interface').on('click','.update-event', getEditForm);
+  $('.interface').on('submit','#update-event-form', updateEvent);
+  $('.interface').on('click','.delete-event', deleteEvent);
+  $('.interface').on('click','.update-rsvp', showSingleEvent);
+};
 
 module.exports = {
   addHandlers,
