@@ -26,8 +26,9 @@ const onSignIn = (event) => {
 
 const onSignOut = (event) => {
   event.preventDefault();
+  console.log('clicked sign out');
   api.signOut()
-    .done(ui.success)
+    .done(ui.signOutSuccess)
     .fail(ui.failure);
 };
 
@@ -35,15 +36,35 @@ const onChangePassword = (event) => {
   event.preventDefault();
   let data = getFormFields(event.target);
   api.changePassword(data)
-    .done(ui.success)
+    .done(ui.passwordChangeSuccess)
     .fail(ui.failure);
 };
 
+const onShowAuth = () => {
+  event.preventDefault();
+  let authForm = '';
+  if ($(event.target).hasClass('sign-up')) {
+    authForm = 'sign-up';
+  } else if ($(event.target).hasClass('sign-in')) {
+    console.log('clicked on sign in link');
+    authForm = 'sign-in';
+  }
+  ui.showAuthForms(authForm);
+};
+
+const onTogglePasswordForm = (event) => {
+  event.preventDefault();
+  ui.togglePasswordForm();
+};
+
 const addHandlers = () => {
-  $('.auth').on('submit', '#sign-up', onSignUp);
-  $('.auth').on('submit', '#sign-in', onSignIn);
-  $('.auth').on('click', '#sign-out', onSignOut);
-  $('.auth').on('submit', '#change-password', onChangePassword);
+  $('.interface').on('submit', '#sign-up', onSignUp);
+  $('.interface').on('submit', '#sign-in', onSignIn);
+  $('.nav').on('click', '#sign-out', onSignOut);
+  $('.nav').on('click', '#change-pw', onTogglePasswordForm);
+  $('.interface').on('submit', '#change-password', onChangePassword);
+  $('.interface').on('click', '.sign-in', onShowAuth);
+  $('.interface').on('click', '.sign-up', onShowAuth);
 };
 
 module.exports = {
