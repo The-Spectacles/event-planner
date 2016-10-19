@@ -29,29 +29,65 @@ const singleEventSuccess = (data) => {
   if (data.event.endTime) {
     data.event.endTime = formatDateTime.convertClock(data.event.endTime);
   }
-  // we need to get the counts of rsvps. loop through each rsvp to see if yes, no, or maybe
-  let yes = 0;
-  let no = 0;
-  let maybe = 0;
+
+  let responses = {};
+  // loop through the event questions to find each question
+  data.event.questions.forEach((question) => {
+    //set up an empty "answers" object
+    responses[question.text] = [];
+    // let response = {
+    //   questionText: question.text,
+    //   questionOptions: [],
+    // };
+
+    question.options.forEach((option) => {
+      let answer = {};
+      answer[option] = 0;
+      responses[question.text].push(answer);
+    });
+
+    // responses.push(response);
+
+  });
+
+  console.log('responses for this event', responses);
 
   data.event.rsvps.forEach((rsvp) => {
-    if(rsvp.questions[0].options === 'Yes') {
-      yes++;
-    }
-    else if(rsvp.questions[0].options === 'No') {
-      no++;
-    }
-    else if(rsvp.questions[0].options === 'Maybe') {
-      maybe++;
-    }
-  //  console.log('rsvp is', rsvp.questions[0].options);
+    rsvp.questions.forEach((question) => {
+      // responses[question.text][question.options] = responses[question.text][question.options] + 1;
+      responses[question.text].forEach((option) => {
+        if (option.hasOwnProperty(question.options)) {
+          option[question.options] = option[question.options] + 1;
+        }
+      });
+    });
   });
-    console.log("yes is", yes, "no is", no, "maybe is", maybe);
+  console.log('responses for this event', responses);
+  // we need to get the counts of rsvps. loop through each rsvp to see if yes, no, or maybe
+  // let yes = 0;
+  // let no = 0;
+  // let maybe = 0;
+
+  // data.event.rsvps.forEach((rsvp) => {
+  //   if(rsvp.questions[0].options === 'Yes') {
+  //     yes++;
+  //   }
+  //   else if(rsvp.questions[0].options === 'No') {
+  //     no++;
+  //   }
+  //   else if(rsvp.questions[0].options === 'Maybe') {
+  //     maybe++;
+  //   }
+  // //  console.log('rsvp is', rsvp.questions[0].options);
+  // });
+  //   console.log("yes is", yes, "no is", no, "maybe is", maybe);
 
   let event = data.event;
-  event.yes = yes;
-  event.no = no;
-  event.maybe = maybe;
+  // event.yes = yes;
+  // event.no = no;
+  // event.maybe = maybe;
+
+  event.responses = responses;
 
   console.log('formatted event data', event);
   // if the event owner id and the user id match show single event view otherwise
