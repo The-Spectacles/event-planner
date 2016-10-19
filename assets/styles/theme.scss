@@ -34,4 +34,17 @@ form {
   button {
     margin-top: 10px;
   }
+
+  &.create-rsvp {
+    input {
+      width: 5%
+    }
+    label: {
+      width: 95%;
+    }
+  }
+}
+
+.event-responses {
+  text-align: left;
 }
