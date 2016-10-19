@@ -47,7 +47,7 @@ const createEvent = function (event) {
   data.event = formatDateTime.formatTimeForMongo(data.event);
   console.log('improved', data);
   api.createNewEvent(data)
-    .done(ui.createEventsSuccess)
+    .done(ui.createEventSuccess)
     .fail(ui.failure);
 };
 
@@ -87,7 +87,7 @@ const addHandlers = () => {
  $('#get-all-events').on('click', getAllEvents);
  $('#get-my-events').on('click', getMyEvents);
  $('#show-event-form').on('click', showEventForm);
- $('#create-event-form').on('submit', createEvent);
+ $('.interface').on('submit', '#create-event-form', createEvent);
  $('.events').on('click','.show-event', showSingleEvent);
  $('.events').on('click','.update-event', getEditForm);
  $('.events').on('submit','#update-event-form', updateEvent);
