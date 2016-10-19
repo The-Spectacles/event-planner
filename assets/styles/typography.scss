@@ -2,24 +2,26 @@ $font-size: 16px;
 $header-font-size: 25px;
 $title-font-size: 50px;
 
-body
+body,
 h3 {
   font-family: 'Raleway', sans-serif;
   font-size: $font-size;
 }
 
 h3 {
-  color: $tan;
+  color: $homepage-font;
 }
 
-h1 {
+h1,
+h2 {
+  color: $forest-green;
   font-family: 'Playfair Display', serif;
   font-size: $header-font-size;
   font-weight: bold;
 }
 
 .title {
-  color: $tan;
+  color: $homepage-font;
   font-family: 'Playfair Display', serif;
   font-size: $title-font-size;
   font-weight: bold;
@@ -32,7 +34,14 @@ span {
 
 .sign-in
 .sign-up {
-  color: $tan;
+  color: $homepage-font;
   font-family: 'Raleway', sans-serif;
   font-size: $font-size;
+}
+
+li:first-child {
+  color: $forest-green;
+  font-family: 'Playfair Display', serif;
+  font-size: $header-font-size;
+  font-weight: bold;
 }
