@@ -37,9 +37,9 @@ const onShowRsvp = (event) => {
 };
 
 const addHandlers = () => {
-  $('.events').on('submit','#create-rsvp', onCreateRsvp);
-  $('.rsvps').on('click', '#get-my-rsvps', getMyRsvps);
-  $('.rsvps').on('click', '.show-rsvp', onShowRsvp);
+  $('.interface').on('submit','#create-rsvp', onCreateRsvp);
+  $('.interface').on('click', '#get-my-rsvps', getMyRsvps);
+  $('.interface').on('click', '.show-rsvp', onShowRsvp);
 };
 
 module.exports = {
