@@ -1,5 +1,6 @@
 $font-size: 16px;
 $header-font-size: 25px;
+$event-name-font-size: 35px;
 $title-font-size: 50px;
 
 body,
@@ -44,4 +45,8 @@ li:first-child {
   font-family: 'Playfair Display', serif;
   font-size: $header-font-size;
   font-weight: bold;
+}
+
+.event-name {
+  font-size: $event-name-font-size;
 }

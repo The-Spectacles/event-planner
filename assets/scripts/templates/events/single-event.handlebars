@@ -1,7 +1,7 @@
 <a href="" class="update-event"data-id='{{id}}'>Edit</a>
 <a href="" class="delete-event"data-id='{{id}}'>Delete</a>
 
-<h2>{{title}}</h2>
+<h2 class="event-name">{{title}}</h2>
 <p>Date: {{date}}</p>
 <p>Location: {{location}}</p>
 {{#if description}}
@@ -14,12 +14,14 @@
 <p>Ends: {{endTime}}</p>
 {{/if}}
 
-<h2>Attendees</h2>
-{{#each responses}}
-<p>{{@key}}</p>
-  {{#each this}}
+<h2>RSVPs so far</h2>
+<div class="event-rsvps">
+  {{#each responses}}
+  <h3>{{@key}}</h3>
     {{#each this}}
-      <p>{{@key}}: {{this}}</p>
+      {{#each this}}
+        <p><strong>{{@key}}:</strong> {{this}}</p>
+      {{/each}}
     {{/each}}
   {{/each}}
-{{/each}}
+</div>
