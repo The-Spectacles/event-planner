@@ -8,6 +8,10 @@ h3 {
   font-size: $font-size;
 }
 
+h3 {
+  color: $tan;
+}
+
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: $header-font-size;
@@ -15,7 +19,20 @@ h1 {
 }
 
 .title {
+  color: $tan;
   font-family: 'Playfair Display', serif;
   font-size: $title-font-size;
   font-weight: bold;
+}
+
+span {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+}
+
+.sign-in
+.sign-up {
+  color: $tan;
+  font-family: 'Raleway', sans-serif;
+  font-size: $font-size;
 }
