@@ -60,22 +60,25 @@ const singleEventSuccess = (data) => {
 
   console.log('responses for this event', responses);
 
-  // loop through each of the rsvps
-  data.event.rsvps.forEach((rsvp) => {
-    // loop through each question/answer in the rsvp
-    rsvp.questions.forEach((question) => {
-      // find the appropriate question in the responses object and go through all of the possible answers
-      responses[question.text].forEach((option) => {
-        // if there's a match between the response in the RSVP and the answer option, increment the count
-        // so if the rsvp is "Yes" for "Are you coming?"
-        // then change tha answer option inside of the responses object for that question
-        // to { "Yes": 1 }
-        if (option.hasOwnProperty(question.options)) {
-          option[question.options] = option[question.options] + 1;
-        }
+  if(data.event.rsvps) {
+    // loop through each of the rsvps
+    data.event.rsvps.forEach((rsvp) => {
+      // loop through each question/answer in the rsvp
+      rsvp.questions.forEach((question) => {
+        // find the appropriate question in the responses object and go through all of the possible answers
+        responses[question.text].forEach((option) => {
+          // if there's a match between the response in the RSVP and the answer option, increment the count
+          // so if the rsvp is "Yes" for "Are you coming?"
+          // then change tha answer option inside of the responses object for that question
+          // to { "Yes": 1 }
+          if (option.hasOwnProperty(question.options)) {
+            option[question.options] = option[question.options] + 1;
+          }
+        });
       });
     });
-  });
+  }
+  
   console.log('responses for this event', responses);
   // we need to get the counts of rsvps. loop through each rsvp to see if yes, no, or maybe
   // let yes = 0;
@@ -108,11 +111,11 @@ const singleEventSuccess = (data) => {
   // if the event owner id and the user id match show single event view otherwise
   // show rsvp view
     if (event._owner === app.user._id) {
-      $(".single-event").html(showSingleEventTemplate(event));
+      $(".interface").html(showSingleEventTemplate(event));
     }
     else {
     // we should think about what the main div is that we're filling up with content
-      $(".single-event").html(showRsvpViewTemplate(event));
+      $(".interface").html(showRsvpViewTemplate(event));
     }
 };
 
@@ -129,8 +132,10 @@ const myEventsSuccess = (data) => {
   $(".events-list").html(showMyEventsTemplate(myEvents));
 };
 
-const createEventSuccess = () => {
+const createEventSuccess = (data) => {
+  console.log('inside create event success', data);
   console.log('event created successfully!!');
+  singleEventSuccess(data);
 };
 
 // show edit form
@@ -139,12 +144,18 @@ const editFormSuccess = (data) => {
   data.event = formatDateTime.trimDateAndTime(data.event);
   console.log(data);
   let event = data.event;
-  $(".single-event").html(showEditFormTemplate(event));
+  $(".interface").html(showEditFormTemplate(event));
 };
 
 const deleteEventSuccess = () => {
-  // show profile view
-  console.log('event deleted successfully!!');
+  $('.message').html('<p>Event deleted successfully.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
+  $('.interface').html('<div class="events-list"></div>');
+};
+
+const failure = () => {
+  $('.message').html('<p>Oops! Try again.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
 };
 
 module.exports = {
@@ -154,5 +165,6 @@ module.exports = {
   singleEventSuccess,
   editFormSuccess,
   deleteEventSuccess,
-  showEventFormSuccess
+  showEventFormSuccess,
+  failure,
 };

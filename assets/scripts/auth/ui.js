@@ -44,7 +44,7 @@ const signOutSuccess = () => {
 const togglePasswordForm = () => {
   let passwordVisible = $('.interface').children('.pwd-form').length;
   if(passwordVisible) {
-    $('.interface').html("Show profile view here");
+    profileEvents.buildProfile();
   } else {
     const passwordForm = require('../templates/auth/change-password.handlebars');
     $('.interface').html(passwordForm);
