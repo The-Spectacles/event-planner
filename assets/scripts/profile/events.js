@@ -13,6 +13,12 @@ const buildProfile = () => {
   rsvps.getMyRsvps();
 };
 
+
+const addHandlers = () => {
+ $('#show-profile-view').on('click', buildProfile);
+};
+
 module.exports = {
   buildProfile,
+  addHandlers
 };

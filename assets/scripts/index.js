@@ -8,6 +8,7 @@ const homepage = require('./templates/homepage/container.handlebars');
 const authEvents = require('./auth/events.js');
 const eventEvents = require('./events/events.js');
 const rsvpEvents = require('./rsvps/events.js');
+const profileEvents = require('./profile/events.js');
 
 // On document ready(when the page loads)
 $(() => {
@@ -19,4 +20,5 @@ $(() => {
   authEvents.addHandlers();
   eventEvents.addHandlers();
   rsvpEvents.addHandlers();
+  profileEvents.addHandlers();
 });
