@@ -27,7 +27,6 @@ return $.ajax ({
 
 // create an rsvp
 const createRsvp = (data) => {
-  console.log("create rsvp ajax data is", data);
   return $.ajax({
     url: app.host + '/rsvps',
     method: 'POST',
@@ -40,7 +39,6 @@ const createRsvp = (data) => {
 
 // edit an rsvp
 const updateRsvp = (data) => {
-  console.log('rsvp patch data is', data);
   return $.ajax({
     url: app.host + '/rsvps/' + data.rsvp._id,
     method: 'PATCH',
