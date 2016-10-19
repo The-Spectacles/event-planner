@@ -21,9 +21,23 @@
       <label for="event[endTime]">Ends</label>
       <input name="event[endTime]" id="event[endTime]" type="time">
     </div>
-    <div>
-      <label for="event[description]">Description</label>
-      <input name="event[description]" id="event[description]" type="text">
+    <div class="event-form-questions">
+      <div>
+        <label for="event[questions][0]">Question:</label>
+        <input name="event[questions][0][text]"type="text" value="Are you coming?">
+      </div>
+      <div>
+        <label for="event[questions][0][options][]">Answer option 1:</label>
+        <input name="event[questions][0][options][]" type="text" value="Yes">
+      </div>
+      <div>
+        <label for="event[questions][0][options]">Answer option 2:</label>
+        <input name="event[questions][0][options][]" type="text" value="No">
+      </div>
+      <div>
+        <label for="event[questions][0][options]">Answer option 3:</label>
+        <input name="event[questions][0][options][]" type="text" value="Maybe">
+      </div>
     </div>
     <p><button type="submit">Create Event</button></p>
   </form>
