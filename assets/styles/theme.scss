@@ -17,3 +17,21 @@
   margin-right: 150px;
   text-align: center;
 }
+
+form {
+  margin: auto;
+  max-width: 300px;
+
+  input,
+  label {
+    width: 100%;
+  }
+
+  label {
+    text-align: left;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}

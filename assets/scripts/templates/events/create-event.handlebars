@@ -2,15 +2,15 @@
 <h1>Create An Event</h1>
   <form id="create-event-form">
     <div>
-      <label for="event[title]">Event Name</label>
+      <label for="event[title]">Event Name*</label>
       <input name="event[title]" id="event[title]" type="text" required>
     </div>
     <div>
-      <label for="event[location]">Location</label>
+      <label for="event[location]">Location*</label>
       <input name="event[location]" id="event[location]" type="text" required>
     </div>
     <div>
-      <label for="event[date]">Date</label>
+      <label for="event[date]">Date*</label>
       <input name="event[date]" id="event[date]" type="date" required>
     </div>
     <div>
@@ -21,24 +21,29 @@
       <label for="event[endTime]">Ends</label>
       <input name="event[endTime]" id="event[endTime]" type="time">
     </div>
+    <div>
+      <label for="event[description]">Description</label>
+      <input name="event[description]" id="event[description]" type="text" required>
+    </div>
     <div class="event-form-questions">
+      <h2>Ask your guests a question</h2>
       <div>
-        <label for="event[questions][0]">Question:</label>
+        <label for="event[questions][0]">Question*</label>
         <input name="event[questions][0][text]"type="text" value="Are you coming?">
       </div>
       <div>
-        <label for="event[questions][0][options][]">Answer option 1:</label>
+        <label for="event[questions][0][options][]">Answer option*</label>
         <input name="event[questions][0][options][]" type="text" value="Yes">
       </div>
       <div>
-        <label for="event[questions][0][options]">Answer option 2:</label>
+        <label for="event[questions][0][options]">Answer option*</label>
         <input name="event[questions][0][options][]" type="text" value="No">
       </div>
       <div>
-        <label for="event[questions][0][options]">Answer option 3:</label>
+        <label for="event[questions][0][options]">Answer option*</label>
         <input name="event[questions][0][options][]" type="text" value="Maybe">
       </div>
     </div>
-    <p><button type="submit">Create Event</button></p>
+    <p><button type="submit" class="btn btn-default">Create Event</button></p>
   </form>
 </div>
