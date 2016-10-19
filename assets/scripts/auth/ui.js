@@ -2,22 +2,60 @@
 
 const app = require('../app');
 
-const success = (data) => {
-  console.log(data);
-};
+const profileEvents = require('../profile/events');
 
-const failure = (error) => {
-  console.error(error);
+const failure = () => {
+  $('.message').html('<p>Oops! Try again.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
 };
 
 const signInSuccess = (data) => {
   console.log('signed in!');
   app.user = data.user;
-  success(data);
+  console.log(data);
+  $('.nav').removeClass('hide');
+  profileEvents.buildProfile();
+};
+
+const showAuthForms = (authForm) => {
+  if (authForm === 'sign-up') {
+    const signUpForm = require('../templates/auth/sign-up.handlebars');
+    $('.interface').html(signUpForm);
+  } else if (authForm === 'sign-in') {
+    const signInForm = require('../templates/auth/sign-in.handlebars');
+    $('.interface').html(signInForm);
+  }
+};
+
+const passwordChangeSuccess = () => {
+  $('.message').html('<p>Password changed successfully.</p>');
+  $('.message').children().delay(3000).fadeToggle('slow');
+  profileEvents.buildProfile();
+};
+
+const signOutSuccess = () => {
+  console.log('signed out!');
+  app.user = null;
+  $('.nav').addClass('hide');
+  const homepage = require('../templates/homepage/container.handlebars');
+  $('.interface').html(homepage);
+};
+
+const togglePasswordForm = () => {
+  let passwordVisible = $('.interface').children('.pwd-form').length;
+  if(passwordVisible) {
+    profileEvents.buildProfile();
+  } else {
+    const passwordForm = require('../templates/auth/change-password.handlebars');
+    $('.interface').html(passwordForm);
+  }
 };
 
 module.exports = {
-  success,
   failure,
   signInSuccess,
+  showAuthForms,
+  signOutSuccess,
+  passwordChangeSuccess,
+  togglePasswordForm,
 };

@@ -1,23 +1,10 @@
 'use strict';
 
 const getFormFields = require('../../../lib/get-form-fields');
+const formatDateTime = require('../../../lib/format-date-time');
 
 const api = require('./api');
 const ui = require('./ui');
-//const app = require('../app');
-
-const formatTime = (data) => {
-  // this is string interpolation using "template literals"
-  // same as:
-  // data.event.data + 'T' + data.event.startTime + ':00'
-  if (data.event.startTime) {
-    data.event.startTime = `${data.event.date}T${data.event.startTime}:00`;
-  }
-  if (data.event.endTime) {
-    data.event.endTime = `${data.event.date}T${data.event.endTime}:00`;
-  }
-  return data;
-};
 
 // for getting all events (button)
 
@@ -46,15 +33,21 @@ const showSingleEvent = function (event) {
       .fail(ui.failure);
 };
 
+// show event create form
+const showEventForm = function (event) {
+  event.preventDefault();
+  ui.showEventFormSuccess();
+};
+
 // create an event
 const createEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
   console.log(data);
-  data = formatTime(data);
+  data.event = formatDateTime.formatTimeForMongo(data.event);
   console.log('improved', data);
   api.createNewEvent(data)
-    .done(ui.createEventsSuccess)
+    .done(ui.createEventSuccess)
     .fail(ui.failure);
 };
 
@@ -72,7 +65,7 @@ const getEditForm = function (event) {
 const updateEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
-  data = formatTime(data);
+  data.event = formatDateTime.formatTimeForMongo(data.event);
   api.updateEvent(data)
     .done(ui.singleEventSuccess)
     .fail(ui.failure);
@@ -82,27 +75,28 @@ const deleteEvent = (event) => {
   event.preventDefault();
   let eventId = $(event.target).attr('data-id');
     api.deleteEvent(eventId)
-      .done(ui.deleteEventSuccess)
+      .done(() => {
+        ui.deleteEventSuccess();
+        getMyEvents();
+      })
       .fail(ui.failure);
 };
-
-// 
 
 // events
 
 const addHandlers = () => {
-
-  // for getting all events
- $('#get-all-events').on('click', getAllEvents);
- $('#get-my-events').on('click', getMyEvents);
- $('#create-event-form').on('submit', createEvent);
- $('.events').on('click','.show-event', showSingleEvent);
- $('.events').on('click','.update-event', getEditForm);
- $('.events').on('submit','#update-event-form', updateEvent);
- $('.events').on('click','.delete-event', deleteEvent);
-
- };
+  $('.container-fluid').on('click', '.get-all-events', getAllEvents);
+  $('#get-my-events').on('click', getMyEvents);
+  $('.container-fluid').on('click', '.show-event-form', showEventForm);
+  $('.interface').on('submit', '#create-event-form', createEvent);
+  $('.interface').on('click','.show-event', showSingleEvent);
+  $('.interface').on('click','.update-event', getEditForm);
+  $('.interface').on('submit','#update-event-form', updateEvent);
+  $('.interface').on('click','.delete-event', deleteEvent);
+  $('.interface').on('click','.update-rsvp', showSingleEvent);
+};
 
 module.exports = {
   addHandlers,
+  getMyEvents,
 };

@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Happening</title>
 
       <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
     </head>
     <body class="container-fluid">
-      <div class="auth"></div>
-      <div class="events"></div>
-      <div class="rsvps"></div>
+      <div class="main">
+        <div class="header"><h1 class="title">Happening</h1></div>
+        <div class="failure message"></div>
+        <div class="interface"></div>
+      </div>
+      <div class="nav hide">
+          <p><a href="" id="show-profile-view">My Profile</a></p>
+          <p><a href="" class="show-event-form">Create Event</a></p>
+          <p><a href="" class="get-all-events">Find an Event</a></p>
+          <!-- make this a dropdown later -->
+          <p><a href="" id="change-pw">Change Password</a></p>
+          <p><a href="" id="sign-out">Sign Out</a></p>
+      </div>
     </body>
 </html>
