@@ -10,8 +10,12 @@
 <li>Ends: {{endTime}}</li>
 </ul>
 
-<h2> Attendees </h2>
-
-<p>People attending: {{yes}}</p>
-<p>People declined: {{no}}</p>
-<p>People undecided: {{maybe}}</p>
+<h2>Attendees</h2>
+{{#each responses}}
+<p>{{@key}}</p>
+  {{#each this}}
+    {{#each this}}
+      <p>{{@key}}: {{this}}</p>
+    {{/each}}
+  {{/each}}
+{{/each}}
