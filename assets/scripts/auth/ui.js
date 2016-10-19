@@ -11,6 +11,7 @@ const signInSuccess = (data) => {
   console.log('signed in!');
   app.user = data.user;
   console.log(data);
+  $('.nav').removeClass('hide');
   $('.interface').html("Show profile view here");
 };
 
@@ -33,7 +34,9 @@ const passwordChangeSuccess = () => {
 const signOutSuccess = () => {
   console.log('signed out!');
   app.user = null;
-  $('.interface').html("Show home page view here");
+  $('.nav').addClass('hide');
+  const homepage = require('../templates/homepage/container.handlebars');
+  $('.interface').html(homepage);
 };
 
 const togglePasswordForm = () => {
