@@ -1,3 +1,12 @@
 <h1 class="event-title">My Rsvps</h1>
 
+{{#if events}}
 {{>rsvps-partial}}
+{{else}}
+
+<p>Looks like you haven't RSVP-ed to any events yet.</p>
+<p>Why don't you <a class="get-all-events">find an event</a>?</p>
+
+{{/if}}
+
+

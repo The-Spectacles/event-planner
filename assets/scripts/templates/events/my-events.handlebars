@@ -1,3 +1,11 @@
 <h1 class="event-title">My Events</h1>
 
+{{#if events}}
 {{>events-partial}}
+{{else}}
+
+<p>Looks like you don't have any events yet.</p>
+<p>Why don't you <a href="" class="show-event-form">create one</a>?</p>
+{{/if}}
+
+
