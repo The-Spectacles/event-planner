@@ -10,9 +10,7 @@ const failure = () => {
 };
 
 const signInSuccess = (data) => {
-  console.log('signed in!');
   app.user = data.user;
-  console.log(data);
   $('.nav').removeClass('hide');
   $('.container-fluid').removeClass('image-background');
   profileEvents.buildProfile();
@@ -36,7 +34,6 @@ const passwordChangeSuccess = () => {
 };
 
 const signOutSuccess = () => {
-  console.log('signed out!');
   app.user = null;
   $('.nav').addClass('hide');
   const homepage = require('../templates/homepage/container.handlebars');

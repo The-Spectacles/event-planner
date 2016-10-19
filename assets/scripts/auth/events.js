@@ -26,7 +26,6 @@ const onSignIn = (event) => {
 
 const onSignOut = (event) => {
   event.preventDefault();
-  console.log('clicked sign out');
   api.signOut()
     .done(ui.signOutSuccess)
     .fail(ui.failure);
@@ -46,7 +45,6 @@ const onShowAuth = () => {
   if ($(event.target).hasClass('sign-up')) {
     authForm = 'sign-up';
   } else if ($(event.target).hasClass('sign-in')) {
-    console.log('clicked on sign in link');
     authForm = 'sign-in';
   }
   ui.showAuthForms(authForm);

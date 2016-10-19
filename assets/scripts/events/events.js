@@ -43,9 +43,7 @@ const showEventForm = function (event) {
 const createEvent = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
-  console.log(data);
   data.event = formatDateTime.formatTimeForMongo(data.event);
-  console.log('improved', data);
   api.createNewEvent(data)
     .done(ui.createEventSuccess)
     .fail(ui.failure);

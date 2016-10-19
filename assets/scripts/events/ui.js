@@ -13,7 +13,6 @@ const showCreateEventTemplate = require('../templates/events/create-event.handle
 
 // for getting all events
 const allEventsSuccess = (data) => {
-  console.log('event success data is', data);
   data.events = formatDateTime.formatDatesForDisplay(data.events);
   let allEvents = data;
   $(".interface").html(showAllEventsTemplate(allEvents));
@@ -22,7 +21,6 @@ const allEventsSuccess = (data) => {
 
 // for showing a single event
 const singleEventSuccess = (data) => {
-  console.log('single event success data is', data);
   data.event = formatDateTime.trimDateAndTime(data.event);
   if (data.event.startTime) {
     data.event.startTime = formatDateTime.convertClock(data.event.startTime);
@@ -58,8 +56,6 @@ const singleEventSuccess = (data) => {
 
   });
 
-  console.log('responses for this event', responses);
-
   if(data.event.rsvps) {
     // loop through each of the rsvps
     data.event.rsvps.forEach((rsvp) => {
@@ -78,8 +74,7 @@ const singleEventSuccess = (data) => {
       });
     });
   }
-  
-  console.log('responses for this event', responses);
+
   // we need to get the counts of rsvps. loop through each rsvp to see if yes, no, or maybe
   // let yes = 0;
   // let no = 0;
@@ -107,7 +102,6 @@ const singleEventSuccess = (data) => {
   // add the responses object to the event data so we can use it in handlebars
   event.responses = responses;
 
-  console.log('formatted event data', event);
   // if the event owner id and the user id match show single event view otherwise
   // show rsvp view
     if (event._owner === app.user._id) {
@@ -133,16 +127,12 @@ const myEventsSuccess = (data) => {
 };
 
 const createEventSuccess = (data) => {
-  console.log('inside create event success', data);
-  console.log('event created successfully!!');
   singleEventSuccess(data);
 };
 
 // show edit form
 const editFormSuccess = (data) => {
-  console.log('single event success data is', data);
   data.event = formatDateTime.trimDateAndTime(data.event);
-  console.log(data);
   let event = data.event;
   $(".interface").html(showEditFormTemplate(event));
 };
