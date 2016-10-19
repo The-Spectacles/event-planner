@@ -14,7 +14,9 @@ const signInSuccess = (data) => {
   app.user = data.user;
   console.log(data);
   $('.nav').removeClass('hide');
+  $('.container-fluid').removeClass('image-background');
   profileEvents.buildProfile();
+
 };
 
 const showAuthForms = (authForm) => {
@@ -39,6 +41,8 @@ const signOutSuccess = () => {
   $('.nav').addClass('hide');
   const homepage = require('../templates/homepage/container.handlebars');
   $('.interface').html(homepage);
+  $('.container-fluid').addClass('image-background');
+
 };
 
 const togglePasswordForm = () => {
