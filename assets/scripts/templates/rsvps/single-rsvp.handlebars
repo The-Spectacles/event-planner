@@ -2,19 +2,19 @@
 
 
 <h3>{{title}}</h3>
-<p>Event Date: {{date}}</p>
+<p>Date: {{date}}</p>
 <p>Location: {{location}}</p>
+{{#if description}}
 <p>Description: {{description}}</p>
+{{/if}}
+{{#if startTime}}
 <p>Starts {{startTime}}</p>
+{{/if}}
+{{#if endTime}}
 <p>Ends {{endTime}}</p>
-
+{{/if}}
 {{#each questions}}
 <p>{{text}}</p>
 <p>{{options}}</p>
 
 {{/each}}
-
-
-{{#if description}}
-
-{{/if}}

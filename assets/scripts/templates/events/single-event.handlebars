@@ -1,14 +1,18 @@
 <a href="" class="update-event"data-id='{{id}}'>Edit</a>
 <a href="" class="delete-event"data-id='{{id}}'>Delete</a>
 
-<ul>
-<li>Event Title: {{title}}</li>
-<li>Event Date: {{date}}</li>
-<li>Location: {{location}}</li>
-<li>Description: {{description}}</li>
-<li>Starts: {{startTime}}</li>
-<li>Ends: {{endTime}}</li>
-</ul>
+<h3>{{title}}</h3>
+<p>Date: {{date}}</p>
+<p>Location: {{location}}</p>
+{{#if description}}
+<p>Description: {{description}}</p>
+{{/if}}
+{{#if startTime}}
+<p>Starts: {{startTime}}</p>
+{{/if}}
+{{#if startTime}}
+<p>Ends: {{endTime}}</p>
+{{/if}}
 
 <h2>Attendees</h2>
 {{#each responses}}
