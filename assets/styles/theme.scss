@@ -47,6 +47,12 @@ form {
   }
 }
 
+.auth-form {
+  color: $homepage-font;
+  font-family: 'Raleway', sans-serif;
+  font-size: $font-size;
+}
+
 .event-responses {
   text-align: left;
 }
@@ -54,4 +60,11 @@ form {
 .image-background {
   background: url('../images/happening.jpg') no-repeat;
   background-size: cover;
+}
+
+.white-box {
+  background: $dark-purple;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding-bottom: 10px;
 }

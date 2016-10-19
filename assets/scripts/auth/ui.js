@@ -14,6 +14,8 @@ const signInSuccess = (data) => {
   $('.nav').removeClass('hide');
   $('.container-fluid').removeClass('image-background');
   profileEvents.buildProfile();
+  $('.main').removeClass('white-box');
+
 
 };
 
@@ -39,6 +41,7 @@ const signOutSuccess = () => {
   const homepage = require('../templates/homepage/container.handlebars');
   $('.interface').html(homepage);
   $('.container-fluid').addClass('image-background');
+  $('.main').addClass('white-box');
 
 };
 
