@@ -12,20 +12,10 @@
 <p>Ends: {{endTime}}</p>
 {{/if}}
 
-<h2>Response keys</h2>
-{{#each responses}}
-<p>{{@key}}</p>
-  {{#each this}}
-    {{#each this}}
-      <p>{{@key}}: {{this}}</p>
-    {{/each}}
-  {{/each}}
-{{/each}}
-
-<form id="create-rsvp">
+<form id="create-rsvp" class="create-rsvp">
 <input type="hidden" id="rsvp[_event]" name="rsvp[_event]" value="{{id}}">
 {{#each questions}}
-{{text}}
+<h2>{{text}}</h2>
 <input type="hidden" id="rsvp[questions][text]" name="rsvp[questions][text]" value="{{text}}">
 {{#each options}}
 <div>
@@ -36,5 +26,17 @@
 </div>
 {{/each}}
 {{/each}}
-<button type="submit">Rsvp!</button>
+<button type="submit" class="btn btn-default">RSVP!</button>
 </form>
+
+<h2>RSVPs so far</h2>
+<div class="event-rsvps">
+  {{#each responses}}
+  <h3>{{@key}}</h3>
+    {{#each this}}
+      {{#each this}}
+        <p><strong>{{@key}}:</strong> {{this}}</p>
+      {{/each}}
+    {{/each}}
+  {{/each}}
+</div>

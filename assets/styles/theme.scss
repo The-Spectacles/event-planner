@@ -17,3 +17,34 @@
   margin-right: 150px;
   text-align: center;
 }
+
+form {
+  margin: auto;
+  max-width: 300px;
+
+  input,
+  label {
+    width: 100%;
+  }
+
+  label {
+    text-align: left;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  &.create-rsvp {
+    input {
+      width: 5%
+    }
+    label: {
+      width: 95%;
+    }
+  }
+}
+
+.event-responses {
+  text-align: left;
+}
