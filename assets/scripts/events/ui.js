@@ -16,7 +16,7 @@ const allEventsSuccess = (data) => {
   console.log('event success data is', data);
   data.events = formatDateTime.formatDatesForDisplay(data.events);
   let allEvents = data;
-  $(".events-list").html(showAllEventsTemplate(allEvents));
+  $(".interface").html(showAllEventsTemplate(allEvents));
 };
 
 
