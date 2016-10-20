@@ -1,22 +1,22 @@
 <form id="update-event-form">
   <div>
-    <label for="event[title]">Event Name</label>
+    <label for="event[title]">Event Name*</label>
     <input name="event[title]" id="event[title]" type="text" value="{{title}}" required>
   </div>
   <div>
-    <label for="event[location]">Location</label>
+    <label for="event[location]">Location*</label>
     <input name="event[location]" id="event[location]" type="text" value="{{location}}" required>
   </div>
   <div>
-    <label for="event[date]">Date</label>
+    <label for="event[date]">Date*</label>
     <input name="event[date]" id="event[date]" type="date" value="{{date}}" required>
   </div>
   <div>
-    <label for="event[startTime]">Starts</label>
+    <label for="event[startTime]">Start Time</label>
     <input name="event[startTime]" id="event[startTime]" type="time" value="{{startTime}}">
   </div>
   <div>
-    <label for="event[endTime]">Ends</label>
+    <label for="event[endTime]">End</label>
     <input name="event[endTime]" id="event[endTime]" type="time" value="{{endTime}}">
   </div>
   <div>
@@ -25,16 +25,18 @@
     <input type="hidden" id="event[_id]" name="event[_id]" value={{_id}}>
   </div>
 
+  <h2>Ask your guests a question</h2>
+  <h3>Editing questions after creating your event may affect responses from those who have already RSVPed</h3>
   {{#each questions}}
     <div class="event-form-questions">
       <div>
-        <label for="event[questions][{{@index}}]">Question:</label>
+        <label for="event[questions][{{@index}}]">Question*</label>
         <input name="event[questions][{{@index}}][text]"type="text" value="Are you coming?">
       </div>
 
       {{#each options}}
         <div>
-        <label for="event[questions][0][options][{{@index}}]">Answer option {{@index}}:</label>
+        <label for="event[questions][0][options][{{@index}}]">Answer option*</label>
         <input name="event[questions][0][options][{{@index}}]" type="text" value="{{@this}}">
       </div>
       {{/each}}
