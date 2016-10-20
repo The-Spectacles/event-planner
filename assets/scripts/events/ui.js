@@ -31,30 +31,34 @@ const singleEventSuccess = (data) => {
 
   let responses = {};
   // loop through the event questions to find each question
-  data.event.questions.forEach((question) => {
-    // for each question, add the question text as a property key on responses
-    // the value of that property is an empty array, which will hold the answer objects
-    responses[question.text] = [];
+  if (data.event.questions) {
+    data.event.questions.forEach((question) => {
+      // for each question, add the question text as a property key on responses
+      // the value of that property is an empty array, which will hold the answer objects
+      responses[question.text] = [];
 
-    // for each option, set up an object that looks like: { "Yes": 0 }
-    // push that option into the array we set up above
-    question.options.forEach((option) => {
-      let answer = {};
-      answer[option] = 0;
-      responses[question.text].push(answer);
+      // for each option, set up an object that looks like: { "Yes": 0 }
+      // push that option into the array we set up above
+      if (question.options) {
+          question.options.forEach((option) => {
+            let answer = {};
+            answer[option] = 0;
+            responses[question.text].push(answer);
+          });
+
+          // the end result looks like:
+
+          // responses = {
+          //   "Are you coming?": [
+          //     { "Yes": 0 },
+          //     { "No": 0 },
+          //     { "Maybe": 0 },
+          //   ],
+          // };
+      }
     });
-
-    // the end result looks like:
-
-    // responses = {
-    //   "Are you coming?": [
-    //     { "Yes": 0 },
-    //     { "No": 0 },
-    //     { "Maybe": 0 },
-    //   ],
-    // };
-
-  });
+  }
+  
 
   if(data.event.rsvps) {
     // loop through each of the rsvps
@@ -62,15 +66,17 @@ const singleEventSuccess = (data) => {
       // loop through each question/answer in the rsvp
       rsvp.questions.forEach((question) => {
         // find the appropriate question in the responses object and go through all of the possible answers
-        responses[question.text].forEach((option) => {
-          // if there's a match between the response in the RSVP and the answer option, increment the count
-          // so if the rsvp is "Yes" for "Are you coming?"
-          // then change tha answer option inside of the responses object for that question
-          // to { "Yes": 1 }
-          if (option.hasOwnProperty(question.options)) {
-            option[question.options] = option[question.options] + 1;
-          }
-        });
+        if (responses[question.text]) {
+          responses[question.text].forEach((option) => {
+            // if there's a match between the response in the RSVP and the answer option, increment the count
+            // so if the rsvp is "Yes" for "Are you coming?"
+            // then change tha answer option inside of the responses object for that question
+            // to { "Yes": 1 }
+            if (option.hasOwnProperty(question.options)) {
+              option[question.options] = option[question.options] + 1;
+            }
+          });
+        }
       });
     });
   }
