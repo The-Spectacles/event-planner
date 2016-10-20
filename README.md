@@ -71,7 +71,8 @@ current user has not created the event or already rsvped to the event. </li>
 <li>Nav: https://flic.kr/p/Nfhfkk</li>
 
 # API
-https://event-planner-api-753.herokuapp.com/
+<li>https://event-planner-api-753.herokuapp.com/</li>
+<li>https://github.com/The-Spectacles/event-planner-api</li>
 
 # Unfinished Business
 <li>Add additional styling to the main interface in the profile view</li>
