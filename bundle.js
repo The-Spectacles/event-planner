@@ -1830,29 +1830,33 @@ webpackJsonp([0],[
 
 	  var responses = {};
 	  // loop through the event questions to find each question
-	  data.event.questions.forEach(function (question) {
-	    // for each question, add the question text as a property key on responses
-	    // the value of that property is an empty array, which will hold the answer objects
-	    responses[question.text] = [];
+	  if (data.event.questions) {
+	    data.event.questions.forEach(function (question) {
+	      // for each question, add the question text as a property key on responses
+	      // the value of that property is an empty array, which will hold the answer objects
+	      responses[question.text] = [];
 
-	    // for each option, set up an object that looks like: { "Yes": 0 }
-	    // push that option into the array we set up above
-	    question.options.forEach(function (option) {
-	      var answer = {};
-	      answer[option] = 0;
-	      responses[question.text].push(answer);
+	      // for each option, set up an object that looks like: { "Yes": 0 }
+	      // push that option into the array we set up above
+	      if (question.options) {
+	        question.options.forEach(function (option) {
+	          var answer = {};
+	          answer[option] = 0;
+	          responses[question.text].push(answer);
+	        });
+
+	        // the end result looks like:
+
+	        // responses = {
+	        //   "Are you coming?": [
+	        //     { "Yes": 0 },
+	        //     { "No": 0 },
+	        //     { "Maybe": 0 },
+	        //   ],
+	        // };
+	      }
 	    });
-
-	    // the end result looks like:
-
-	    // responses = {
-	    //   "Are you coming?": [
-	    //     { "Yes": 0 },
-	    //     { "No": 0 },
-	    //     { "Maybe": 0 },
-	    //   ],
-	    // };
-	  });
+	  }
 
 	  if (data.event.rsvps) {
 	    // loop through each of the rsvps
@@ -1860,15 +1864,17 @@ webpackJsonp([0],[
 	      // loop through each question/answer in the rsvp
 	      rsvp.questions.forEach(function (question) {
 	        // find the appropriate question in the responses object and go through all of the possible answers
-	        responses[question.text].forEach(function (option) {
-	          // if there's a match between the response in the RSVP and the answer option, increment the count
-	          // so if the rsvp is "Yes" for "Are you coming?"
-	          // then change tha answer option inside of the responses object for that question
-	          // to { "Yes": 1 }
-	          if (option.hasOwnProperty(question.options)) {
-	            option[question.options] = option[question.options] + 1;
-	          }
-	        });
+	        if (responses[question.text]) {
+	          responses[question.text].forEach(function (option) {
+	            // if there's a match between the response in the RSVP and the answer option, increment the count
+	            // so if the rsvp is "Yes" for "Are you coming?"
+	            // then change tha answer option inside of the responses object for that question
+	            // to { "Yes": 1 }
+	            if (option.hasOwnProperty(question.options)) {
+	              option[question.options] = option[question.options] + 1;
+	            }
+	          });
+	        }
 	      });
 	    });
 	  }
@@ -2017,20 +2023,32 @@ webpackJsonp([0],[
 	    + container.escapeExpression(((helper = (helper = helpers.endTime || (depth0 != null ? depth0.endTime : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"endTime","hash":{},"data":data}) : helper)))
 	    + "</p>\n";
 	},"7":function(container,depth0,helpers,partials,data) {
-	    var stack1, helper, alias1=depth0 != null ? depth0 : {};
-
-	  return "  <h3>"
-	    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
-	    + "</h3>\n"
-	    + ((stack1 = helpers.each.call(alias1,depth0,{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-	},"8":function(container,depth0,helpers,partials,data) {
 	    var stack1;
 
-	  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},depth0,{"name":"each","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+	  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.responses : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+	},"8":function(container,depth0,helpers,partials,data) {
+	    var stack1, helper, alias1=depth0 != null ? depth0 : {};
+
+	  return "    <h3>"
+	    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
+	    + "</h3>\n"
+	    + ((stack1 = helpers["if"].call(alias1,depth0,{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 	},"9":function(container,depth0,helpers,partials,data) {
+	    var stack1;
+
+	  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},depth0,{"name":"each","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+	},"10":function(container,depth0,helpers,partials,data) {
+	    var stack1;
+
+	  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},depth0,{"name":"if","hash":{},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+	},"11":function(container,depth0,helpers,partials,data) {
+	    var stack1;
+
+	  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},depth0,{"name":"each","hash":{},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+	},"12":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=container.escapeExpression;
 
-	  return "        <p><strong>"
+	  return "              <p><strong>"
 	    + alias1(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"key","hash":{},"data":data}) : helper)))
 	    + ":</strong> "
 	    + alias1(container.lambda(depth0, depth0))
@@ -2052,8 +2070,8 @@ webpackJsonp([0],[
 	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.description : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
 	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.startTime : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
 	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.startTime : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-	    + "\n<h2>RSVPs so far</h2>\n<div class=\"event-rsvps\">\n"
-	    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.responses : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+	    + "\n<h2>RSVPs so far</h2>\n<div class=\"event-rsvps\">\n\n"
+	    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.responses : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
 	    + "</div>\n";
 	},"useData":true});
 
@@ -2068,7 +2086,7 @@ webpackJsonp([0],[
 
 	  return "    <div class=\"event-form-questions\">\n      <div>\n        <label for=\"event[questions]["
 	    + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
-	    + "]\">Question:</label>\n        <input name=\"event[questions]["
+	    + "]\">Question*</label>\n        <input name=\"event[questions]["
 	    + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
 	    + "][text]\"type=\"text\" value=\"Are you coming?\">\n      </div>\n\n"
 	    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.options : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
@@ -2078,9 +2096,7 @@ webpackJsonp([0],[
 
 	  return "        <div>\n        <label for=\"event[questions][0][options]["
 	    + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
-	    + "]\">Answer option "
-	    + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
-	    + ":</label>\n        <input name=\"event[questions][0][options]["
+	    + "]\">Answer option*</label>\n        <input name=\"event[questions][0][options]["
 	    + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
 	    + "]\" type=\"text\" value=\""
 	    + alias4(container.lambda(depth0, depth0))
@@ -2088,21 +2104,21 @@ webpackJsonp([0],[
 	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "<form id=\"update-event-form\">\n  <div>\n    <label for=\"event[title]\">Event Name</label>\n    <input name=\"event[title]\" id=\"event[title]\" type=\"text\" value=\""
+	  return "<form id=\"update-event-form\">\n  <div>\n    <label for=\"event[title]\">Event Name*</label>\n    <input name=\"event[title]\" id=\"event[title]\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-	    + "\" required>\n  </div>\n  <div>\n    <label for=\"event[location]\">Location</label>\n    <input name=\"event[location]\" id=\"event[location]\" type=\"text\" value=\""
+	    + "\" required>\n  </div>\n  <div>\n    <label for=\"event[location]\">Location*</label>\n    <input name=\"event[location]\" id=\"event[location]\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.location || (depth0 != null ? depth0.location : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"location","hash":{},"data":data}) : helper)))
-	    + "\" required>\n  </div>\n  <div>\n    <label for=\"event[date]\">Date</label>\n    <input name=\"event[date]\" id=\"event[date]\" type=\"date\" value=\""
+	    + "\" required>\n  </div>\n  <div>\n    <label for=\"event[date]\">Date*</label>\n    <input name=\"event[date]\" id=\"event[date]\" type=\"date\" value=\""
 	    + alias4(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"date","hash":{},"data":data}) : helper)))
-	    + "\" required>\n  </div>\n  <div>\n    <label for=\"event[startTime]\">Starts</label>\n    <input name=\"event[startTime]\" id=\"event[startTime]\" type=\"time\" value=\""
+	    + "\" required>\n  </div>\n  <div>\n    <label for=\"event[startTime]\">Start Time</label>\n    <input name=\"event[startTime]\" id=\"event[startTime]\" type=\"time\" value=\""
 	    + alias4(((helper = (helper = helpers.startTime || (depth0 != null ? depth0.startTime : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"startTime","hash":{},"data":data}) : helper)))
-	    + "\">\n  </div>\n  <div>\n    <label for=\"event[endTime]\">Ends</label>\n    <input name=\"event[endTime]\" id=\"event[endTime]\" type=\"time\" value=\""
+	    + "\">\n  </div>\n  <div>\n    <label for=\"event[endTime]\">End</label>\n    <input name=\"event[endTime]\" id=\"event[endTime]\" type=\"time\" value=\""
 	    + alias4(((helper = (helper = helpers.endTime || (depth0 != null ? depth0.endTime : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"endTime","hash":{},"data":data}) : helper)))
 	    + "\">\n  </div>\n  <div>\n    <label for=\"event[description]\">Description</label>\n    <input name=\"event[description]\" id=\"event[description]\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
 	    + "\">\n    <input type=\"hidden\" id=\"event[_id]\" name=\"event[_id]\" value="
 	    + alias4(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"_id","hash":{},"data":data}) : helper)))
-	    + ">\n  </div>\n\n"
+	    + ">\n  </div>\n\n  <h2>Ask your guests a question</h2>\n  <h3>Editing questions after creating your event may affect responses from those who have already RSVPed</h3>\n"
 	    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.questions : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
 	    + "  <p><button type=\"submit\" class=\"btn btn-default\">Update Event</button></p>\n</form>\n";
 	},"useData":true});
@@ -2215,7 +2231,7 @@ webpackJsonp([0],[
 	var Handlebars = __webpack_require__(4);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<h1>Create An Event</h1>\n  <form id=\"create-event-form\">\n    <div>\n      <label for=\"event[title]\">Event Name*</label>\n      <input name=\"event[title]\" id=\"event[title]\" type=\"text\" required>\n    </div>\n    <div>\n      <label for=\"event[location]\">Location*</label>\n      <input name=\"event[location]\" id=\"event[location]\" type=\"text\" required>\n    </div>\n    <div>\n      <label for=\"event[date]\">Date*</label>\n      <input name=\"event[date]\" id=\"event[date]\" type=\"date\" required>\n    </div>\n    <div>\n      <label for=\"event[startTime]\">Starts</label>\n      <input name=\"event[startTime]\" id=\"event[startTime]\" type=\"time\">\n    </div>\n    <div>\n      <label for=\"event[endTime]\">Ends</label>\n      <input name=\"event[endTime]\" id=\"event[endTime]\" type=\"time\">\n    </div>\n    <div>\n      <label for=\"event[description]\">Description</label>\n      <input name=\"event[description]\" id=\"event[description]\" type=\"text\" required>\n    </div>\n    <div class=\"event-form-questions\">\n      <h2>Ask your guests a question</h2>\n      <div>\n        <label for=\"event[questions][0]\">Question*</label>\n        <input name=\"event[questions][0][text]\"type=\"text\" value=\"Are you coming?\">\n      </div>\n      <div>\n        <label for=\"event[questions][0][options][]\">Answer option*</label>\n        <input name=\"event[questions][0][options][]\" type=\"text\" value=\"Yes\">\n      </div>\n      <div>\n        <label for=\"event[questions][0][options]\">Answer option*</label>\n        <input name=\"event[questions][0][options][]\" type=\"text\" value=\"No\">\n      </div>\n      <div>\n        <label for=\"event[questions][0][options]\">Answer option*</label>\n        <input name=\"event[questions][0][options][]\" type=\"text\" value=\"Maybe\">\n      </div>\n    </div>\n    <p><button type=\"submit\" class=\"btn btn-default\">Create Event</button></p>\n  </form>\n";
+	    return "<h1>Create An Event</h1>\n  <form id=\"create-event-form\">\n    <div>\n      <label for=\"event[title]\">Event Name*</label>\n      <input name=\"event[title]\" id=\"event[title]\" type=\"text\" required>\n    </div>\n    <div>\n      <label for=\"event[location]\">Location*</label>\n      <input name=\"event[location]\" id=\"event[location]\" type=\"text\" required>\n    </div>\n    <div>\n      <label for=\"event[date]\">Date*</label>\n      <input name=\"event[date]\" id=\"event[date]\" type=\"date\" required>\n    </div>\n    <div>\n      <label for=\"event[startTime]\">Start Time</label>\n      <input name=\"event[startTime]\" id=\"event[startTime]\" type=\"time\">\n    </div>\n    <div>\n      <label for=\"event[endTime]\">End Time</label>\n      <input name=\"event[endTime]\" id=\"event[endTime]\" type=\"time\">\n    </div>\n    <div>\n      <label for=\"event[description]\">Description</label>\n      <input name=\"event[description]\" id=\"event[description]\" type=\"text\" required>\n    </div>\n    <div class=\"event-form-questions\">\n      <h2>Ask your guests a question</h2>\n      <div>\n        <label for=\"event[questions][0]\">Question*</label>\n        <input name=\"event[questions][0][text]\"type=\"text\" value=\"Are you coming?\">\n      </div>\n      <div>\n        <label for=\"event[questions][0][options][]\">Answer option*</label>\n        <input name=\"event[questions][0][options][]\" type=\"text\" value=\"Yes\">\n      </div>\n      <div>\n        <label for=\"event[questions][0][options]\">Answer option*</label>\n        <input name=\"event[questions][0][options][]\" type=\"text\" value=\"No\">\n      </div>\n      <div>\n        <label for=\"event[questions][0][options]\">Answer option*</label>\n        <input name=\"event[questions][0][options][]\" type=\"text\" value=\"Maybe\">\n      </div>\n    </div>\n    <p><button type=\"submit\" class=\"btn btn-default\">Create Event</button></p>\n  </form>\n";
 	},"useData":true});
 
 /***/ },
