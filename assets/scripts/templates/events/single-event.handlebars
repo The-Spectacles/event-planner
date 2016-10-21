@@ -16,12 +16,19 @@
 
 <h2>RSVPs so far</h2>
 <div class="event-rsvps">
-  {{#each responses}}
-  <h3>{{@key}}</h3>
-    {{#each this}}
-      {{#each this}}
-        <p><strong>{{@key}}:</strong> {{this}}</p>
-      {{/each}}
+
+  {{#if responses}}
+    {{#each responses}}
+    <h3>{{@key}}</h3>
+      {{#if this}}
+        {{#each this}}
+          {{#if this}}
+            {{#each this}}
+              <p><strong>{{@key}}:</strong> {{this}}</p>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      {{/if}}
     {{/each}}
-  {{/each}}
+  {{/if}}
 </div>
